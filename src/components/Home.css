@@ -1,0 +1,14 @@
+.driver-card-contianer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.driver-card {
+    width: 600px;
+    padding: 20px;
+}
+
+.driver-card.top-card-extra-margin {
+    margin-top: 60px;
+}

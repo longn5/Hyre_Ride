@@ -1,0 +1,18 @@
+.navbar-container {
+    height: 40px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #e4e4e4;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-brandName {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.navbar-settings {
+    padding-right: 20px;
+    margin-top: 10px;
+}

@@ -1,35 +1,37 @@
 import React from 'react';
 import './DriverCard.css';
+import { withRouter } from 'react-router-dom';
 
 class DriverCard extends React.Component {
   render() {
-    const {driver} = this.props;
-    console.log(driver);
+    const {driver, history} = this.props;
     return (
-      <div className="card-container">
-        <div className="card-container-visible">
-          <div className="card-information">
-            <div className="image-container">
-              <img
-                height={200}
-                width={250}
-                src={driver.photoURL} />
+      <div>
+        <div className="card-container">
+          <div className="card-container-visible" onClick={() => history.push('/profile')}>
+            <div className="driver-name">
+              Drive with <span className="highlighted-word">{driver.name} </span>in
+              <span className="highlighted-word"> {driver.vehicle}</span> for <span className="highlighted-word">{driver.rate}/hr</span>
             </div>
-            <div className="profile-information">
-              <div>Name: {driver.name}</div>
-              <div>Places I can drive you: {driver.areaServed}</div>
-              <div>Capacity: {driver.capacity}</div>
-              <div>Vehicle: {driver.vehicle}</div>
-              <div>Rate: ${driver.rate}/hr</div>
+            <div className="driver-name">
+              The car has capacity for <span className="highlighted-word">{driver.capacity} people</span>
+            </div>
+            <div className="card-information">
+              <div >
+                <img
+                  className="image-container"
+                  height={150}
+                  src={driver.photoURL} />
+              </div>
+              <div className="profile-information">
+              {`"${driver.shortDescription}..."`}
+              </div>
             </div>
           </div>
-          <div className="driver-short">
-            {driver.shortDescription}...
-        </div>
         </div>
       </div>
     );
   }
 }
 
-export default DriverCard;
+export default withRouter(DriverCard);

@@ -12,10 +12,14 @@
       "import/no-named-as-default-member": 0,
       "object-curly-spacing": 0,
       "no-param-reassign": 0,
-      "comma-dangle": ["error", "never"]
+      "comma-dangle": ["error", "never"],
+      "jsx-a11y/img-has-alt": 0,
+      "jsx-a11y/alt-text": 0,
+      "jsx-a11y/no-static-element-interactions": 0
     },
     "globals": {
       "fetch": false,
-      "localStorage": false
+      "localStorage": false,
+      "document": false
     }
 }

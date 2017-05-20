@@ -4,7 +4,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Home from './components/Home';
 import Login from './components/Login';
+import Navbar from './components/Navbar';
 import DriverProfile from './components/DriverProfile';
+
 import './App.css';
 import * as authActionCreators from './actions/auth';
 
@@ -27,11 +29,12 @@ class App extends Component {
   render() {
     return (
       <div>
+        {this.props.user && <Navbar />}
         <BrowserRouter>
           <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/profile/" component={DriverProfile} />
+            <Route path="/login" exact component={Login} />
             <PrivateRoute authed={!!this.props.user} path="/" exact component={Home} />
+            <Route path="/profile" exact component={DriverProfile} />
           </Switch>
         </BrowserRouter>
       </div>

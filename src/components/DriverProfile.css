@@ -1,0 +1,38 @@
+.driver-profile-information {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-top: 80px;
+}
+.driver-profile-long-description {
+    max-width: 600px;
+    padding-left: 20px;
+}
+
+.driver-profile-bio-text {
+    padding-top: 20px;
+}
+
+.vehicle-image-sides {
+    display: flex;
+    flex-direction: column;
+}
+.vehicle-images-thumbnail {
+    display: flex;
+    cursor: pointer;
+}
+
+.link-address {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    width: 180px;
+}
+
+.name-header {
+    margin-bottom: 30px;
+    font-size: 20px;
+}

@@ -12,10 +12,12 @@ class Navbar extends React.Component {
     }
     return (
       <div className="navbar-container">
-        <span className="navbar-brandName">BrandName</span>
-        <div style={{marginTop: '10px'}}>
-          <span className="navbar-settings">Profile Picture</span>
-          <span className="navbar-settings" onClick={this.props.logout}>Logout</span>
+        <div className="navbar-contents">
+          <span className="navbar-brandName">BrandName</span>
+          <div style={{marginTop: '10px'}}>
+            <span className="navbar-settings">Profile Picture</span>
+            <span className="navbar-settings" onClick={this.props.logout}>Logout</span>
+          </div>
         </div>
       </div>
     );

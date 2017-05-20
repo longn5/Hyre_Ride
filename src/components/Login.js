@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { Redirect } from 'react-router-dom';
 import * as authActionCreators from '../actions/auth';
+import './Login.css';
 
 class Login extends React.Component {
   render() {
@@ -11,7 +12,23 @@ class Login extends React.Component {
       return <Redirect to={from} />;
     }
 
-    return <div onClick={this.props.authActions.facebookLogin}>LOGIN HERE</div>;
+    return (
+      <div className="login-page">
+        <div className="buttonContainer">
+          <div className="loginPageButton">
+            <div className="loginPageLoginStuff">
+              <div><h3>Ride with us</h3></div>
+              <div><h3>Book ahead of time and save</h3></div>
+            </div>
+            <button
+              onClick={this.props.authActions.facebookLogin}
+              className="loginBtn loginBtn--facebook">
+                Login with Facebook
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 const mapStateToProps = state => {

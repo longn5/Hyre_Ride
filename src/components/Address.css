@@ -8,6 +8,21 @@
     align-items: center;
 }
 
+.visitlocations {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.totals {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: #fefefe;
+    font-size: larger;
+    font-weight: bold;
+}
+
 .addressmodal {
     background: rgb(30, 102, 182);
         margin-top: 40px;

@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux';
-import auth from './auth';
 import drivers from './drivers';
+import driver from './driver';
+import packages from './packages';
 
 export default combineReducers({
-  auth,
-  drivers
+  drivers,
+  driver,
+  packages
 });

@@ -1,15 +1,75 @@
-.package-container {
-    display: -webkit-box;
+.wineries {
+    margin-top: 60px;
     display: -ms-flexbox;
     display: flex;
+    flex-direction: column;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
-    flex-direction: column;
     align-items: center;
 }
 
-.package {
-    background: #CDDC39;
-    margin-top: 40px;
-    padding: 40px;
+.winery-row {
+    display: flex;
+    justify-content: center;
+    max-width: 450px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.driver-money {
+    position: fixed;
+    margin-top: 60px;
+}
+
+select.selected-select {
+    background: #7373ff;
+    color: white;
+    width: 50px;
+}
+
+.package-button-selected {
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    margin-left: 10px;
+    background-color: rgba(0, 0, 255, 0.55);
+    color: #fafafa;
+}
+
+.packageHeader {
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.short-description {
+    width: 400px;
+}
+.short-description {
+    padding: 20px;
+    max-width: 350px;
+}
+
+.websiteLink {
+    padding-top: 10px;
+}
+
+.packageBox {
+    width: 400px;
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 20px;
+}
+
+.package-button {
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    margin-left: 10px;
+    color: rgba(63, 65, 181, 0.9);
 }

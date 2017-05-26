@@ -9,7 +9,6 @@ const getAllDrivers = () => (dispatch) => {
   });
   database().ref('/drivers/').once('value').then((snapshot) => {
     const drivers = [];
-    console.log(snapshot.val());
     snapshot.forEach((snapshotval) => {
       drivers.push(DriverModel(snapshotval.val()));
     });

@@ -25,6 +25,10 @@
     cursor: pointer;
 }
 
+.detailAddress {
+    margin-bottom: 10px;
+}
+
 .link-address {
     color: blue;
     text-decoration: underline;

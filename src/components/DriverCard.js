@@ -5,10 +5,11 @@ import { withRouter } from 'react-router-dom';
 class DriverCard extends React.Component {
   render() {
     const {driver, history} = this.props;
+    console.log(this.props.driver);
     return (
       <div>
         <div className="card-container">
-          <div className="card-container-visible" onClick={() => history.push('/profile')}>
+          <div className="card-container-visible" onClick={() => history.push(`/profile/${driver.id}`)}>
             <div className="driver-name">
               Drive with <span className="highlighted-word">{driver.name} </span>in
               <span className="highlighted-word"> {driver.vehicle}</span> for <span className="highlighted-word">{driver.rate}/hr</span>

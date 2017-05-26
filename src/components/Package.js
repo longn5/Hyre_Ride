@@ -1,42 +1,52 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as authActionCreators from '../actions/auth';
+import * as packageActionCreators from '../actions/packages';
+import SinglePackage from './SinglePackage';
 import './Package.css';
 
-class Package extends React.Component {
-  render() {
-    return (
-      <div className="package-container">
-        <div className="package">
-          <img
-            width={250}
-           src="http://www.terlatovineyards.com/sites/default/files/slideshow/vineyard-grapes-home-slideshow.jpg" />
-           <div>
-            Some description about the winery here.
-           </div>
-           <div>
-              Select this winery for the tour
-              <input type="checkbox" />
-           </div>
+const WrapPackageInRow = ({doublePackages}) => {
+  return (
+    <div className="winery-row">
+      {
+         doublePackages.map((singlePackage, index) => (
+           <SinglePackage key={index} name={singlePackage.name} singlePackage={singlePackage} />))
+      }
+    </div>
+  );
+};
 
-           <div>
-           <span>Done</span>
-           <span>Cancel</span>
-           </div>
+class Package extends React.Component {
+  componentWillMount() {
+    const id = this.props.match.params.packageid;
+    this.props.packageActions.getPackage(id);
+  }
+
+  render() {
+    const packageRows = [];
+    const packages = this.props.packages;
+    for (let i = 0; i < packages.length; i += 2) {
+      packageRows.push(
+        <div key={i}>
+        <WrapPackageInRow  doublePackages={[packages[i], packages[i + 1]]} />
         </div>
+      );
+    }
+    return (
+      <div className="wineries">
+        {packageRows}
       </div>
-    )
+    );
   }
 }
 const mapStateToProps = state => {
   return ({
-    user: state.auth.user
+    packages: state.packages.data
   });
 };
 
 const mapDispatchToProps = dispatch => ({
-  authActions: bindActionCreators(authActionCreators, dispatch)
+  packageActions: bindActionCreators(packageActionCreators, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Package);

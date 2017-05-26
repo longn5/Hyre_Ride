@@ -16,6 +16,8 @@ const Driver = (data) => {
   const driverData = {
     name: data.name,
     photoURL: data.profilePicture,
+    id: data.id,
+    carImages: data.carimages,
     rate: data.rate,
     capacity: data.capacity,
     areaServed: areaServed.join(', '),

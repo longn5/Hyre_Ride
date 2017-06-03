@@ -2,14 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as packageActionCreators from '../actions/packages';
-import './Package.css';
+import './Destination.css';
 
-class SinglePackage extends React.Component {
+class Locations extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       selected: false,
-      value: `${props.singlePackage.category},${props.singlePackage.name},1`
+      value: `${props.packageDispaly.package},${props.packageDispaly.name},1`
     }
   }
 
@@ -24,14 +24,14 @@ class SinglePackage extends React.Component {
   }
 
   render() {
-    const {singlePackage} = this.props;
-    console.log(singlePackage);
+    const {packageDispaly} = this.props;
+    console.log('packageDispaly');
   return (
     <div className="packageBox">
       <div className="packageHeader">
           <span>
             <div className="coolWinery">
-              <div style={{color: 'black'}}>{singlePackage.name}</div>
+              <div style={{color: 'black'}}>{packageDispaly.name}</div>
             </div>
             <span>Time you want spend: </span>
             <span>
@@ -41,8 +41,8 @@ class SinglePackage extends React.Component {
                 disabled={this.state.selected}
                 onChange={(event) => this.setState({value: event.target.value})}>
                 {
-                  singlePackage && singlePackage.timetospend.map((value) => {
-                    return <option key={value} value={`${singlePackage.package},${singlePackage.name},${value}`}>{value}</option>
+                  packageDispaly && packageDispaly.timetospend.map((value) => {
+                    return <option key={value} value={`${packageDispaly.package},${packageDispaly.name},${value}`}>{value}</option>
                   })
                 }
             </select>
@@ -59,24 +59,14 @@ class SinglePackage extends React.Component {
       <img
         style={{paddingRight: '10px'}}
         width={400}
-        src={singlePackage.image} />
+        src={packageDispaly.image} />
       <div className="short-description">
-        <span>{singlePackage.description}</span>
-        <div className="websiteLink"><a target="_blank" href={singlePackage.website}>Click here to learn more.</a></div>
+        <span>{packageDispaly.description}</span>
+        <div className="websiteLink"><a target="_blank" href={packageDispaly.website}>Click here to learn more.</a></div>
       </div>
     </div>
   );
 }
 };
 
-const mapStateToProps = state => {
-  return ({
-    packages: state.packages.destinations
-  });
-};
-
-const mapDispatchToProps = dispatch => ({
-  packageActions: bindActionCreators(packageActionCreators, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SinglePackage);
+export default Locations;

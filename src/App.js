@@ -4,7 +4,8 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import DriverProfile from './components/DriverProfile';
 import ThankYou from './components/Thankyou';
-import Package from './components/Package';
+import Packages from './components/Packages';
+import Destinations from './components/Destinations';
 import './App.css';
 
 class App extends Component {
@@ -18,9 +19,9 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Route path="/" component={Navbar} />
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact component={Packages} />
             <Route path="/profile/:driverid" exact component={DriverProfile} />
-            <Route path="/package/:packageid/:driverid" exact component={Package} />
+            <Route path="/package/:packageid" exact component={Destinations} />
             <Route path="/thankyou" exact component={ThankYou} />
           </div>
         </BrowserRouter>

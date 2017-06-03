@@ -19,36 +19,40 @@ class Navbar extends React.Component {
     };
   }
   render() {
-    console.log(this.props);
     return (
       <div className="navbar-container">
         <div className="navbar-contents">
           <span className="navbar-brandName" onClick={() => this.props.history.push('/')}>Chauffr</span>
           <div style={{marginTop: '10px'}}>
-            { !isEmpty(this.props.destinations.parent.locations) &&
-            <span className="navbar-settings" onClick={() => this.setState({modal: true})}>
-              <i className="fa fa-shopping-cart" style={{paddingRight: '8px'}} />
-              Click here to checkout ({isEmpty(this.props.destinations.parent.locations) ? 0 : Object.keys(this.props.destinations.parent.locations).length
-              })
-            </span> }
+
             <span className="navbar-settings">About Us</span>
           </div>
         </div>
-        <Modal
-            isOpen={this.state.modal}
-            contentLabel="Modal"
-            >
-              <AddressModal 
-                close={() => this.setState({modal: false})}
-                visitinglocations={this.props.destinations.parent.locations} />
-        </Modal>
+
       </div>
     );
   }
 }
 const mapStateToProps = state => ({
-  destinations: state.packages.destinations
+  destinations: state
 });
+
+/*
+{ !isEmpty(this.props.destinations.parent.locations) &&
+<span className="navbar-settings" onClick={() => this.setState({modal: true})}>
+  <i className="fa fa-shopping-cart" style={{paddingRight: '8px'}} />
+  Click here to checkout ({isEmpty(this.props.destinations.parent.locations) ? 0 : Object.keys(this.props.destinations.parent.locations).length
+  })
+</span> }
+<Modal
+    isOpen={this.state.modal}
+    contentLabel="Modal"
+    >
+      <AddressModal
+        close={() => this.setState({modal: false})}
+        visitinglocations={this.props.destinations.parent.locations} />
+</Modal>
+*/
 
 const mapDispatchToProps = dispatch => ({
   packageActions: bindActionCreators(packageActionCreators, dispatch)

@@ -1,28 +1,5 @@
-.wineries {
-    margin-top: 60px;
-    display: -ms-flexbox;
-    display: flex;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    align-items: center;
-}
-
-.winery-row {
-    display: flex;
-    justify-content: center;
-    max-width: 450px;
-    margin-top: 10px;
-    margin-left: 20px;
-}
-
 .coolWinery {
     padding-bottom: 10px;
-}
-
-.driver-money {
-    position: fixed;
-    margin-top: 60px;
 }
 
 select.selected-select {
@@ -48,26 +25,29 @@ select.selected-select {
 }
 
 .short-description {
-    width: 400px;
-}
-.short-description {
     padding: 20px;
     max-width: 350px;
 }
 
 .websiteLink {
-    padding-top: 10px;
+    text-decoration: underline;
+    color: blue;
+    margin-top: 10px;
+}
+
+.packagepadding {
+    margin: 20px;
 }
 
 .packageBox {
     width: 400px;
+    margin-left: 10px;
     border-width: 1px;
     border-style: solid;
-    margin-bottom: 20px;
     padding-top: 20px;
     padding-left: 10px;
     padding-right: 10px;
-    margin-right: 20px;
+    margin-bottom: 10px;
 }
 
 .package-button {

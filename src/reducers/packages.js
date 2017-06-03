@@ -1,27 +1,12 @@
 import constants from '../constants/index';
 
 const initialState = {
-  data: [],
-  destinations: {
-    parent: {
-      name: null,
-      locations: {}
-    }
-  }
+  data: []
 };
 
 export default (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
-    case constants.ADD_PACKAGE:
-      return {
-        data: []
-      };
-    case constants.DESTINATION_ADDED:
-      return Object.assign({}, state, {
-        destinations: Object.assign({}, action.payload)
-      });
-    case constants.PACKAGE_LOADED:
+    case constants.PACKAGES_LOADED:
       return Object.assign({}, state, {
         loading: true,
         data: action.payload

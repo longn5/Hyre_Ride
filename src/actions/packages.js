@@ -6,18 +6,20 @@ const getPackage = id => (dispatch) => {
     type: actionType.LOADING,
     payload: []
   });
-  database().ref(`/packages/${id}`).once('value').then((snapshot) => {
-    const wines = [];
-    snapshot.forEach((snapshotval) => {
-      wines.push(snapshotval.val());
-    });
 
+  database().ref(`/packages/${id}`).once('value').then((snapshot) => {
+    const placesinpackages = [];
+    snapshot.forEach((snapshotval) => {
+      placesinpackages.push(snapshotval.val());
+    });
+    console.log(placesinpackages, 'out here');
     dispatch({
       type: actionType.PACKAGE_LOADED,
-      payload: wines
+      payload: placesinpackages
     });
   })
-  .catch(() => {
+  .catch((e) => {
+    console.log('in here', e);
     dispatch({
       type: actionType.ERROR,
       payload: []

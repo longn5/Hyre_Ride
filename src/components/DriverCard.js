@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 class DriverCard extends React.Component {
   render() {
     const {driver, history} = this.props;
-    console.log(this.props.driver);
     return (
       <div>
         <div className="card-container">
@@ -15,7 +14,7 @@ class DriverCard extends React.Component {
               <span className="highlighted-word"> {driver.vehicle}</span> for <span className="highlighted-word">{driver.rate}/hr</span>
             </div>
             <div className="driver-name">
-              The car has capacity for <span className="highlighted-word">{driver.capacity} people</span>
+              The vehicle has capacity for <span className="highlighted-word">{driver.capacity} people</span>
             </div>
             <div className="card-information">
               <div >

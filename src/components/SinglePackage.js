@@ -25,11 +25,14 @@ class SinglePackage extends React.Component {
 
   render() {
     const {singlePackage} = this.props;
-    console.log(this.state.selected);
+    console.log(singlePackage);
   return (
     <div className="packageBox">
       <div className="packageHeader">
           <span>
+            <div className="coolWinery">
+              <div style={{color: 'black'}}>{singlePackage.name}</div>
+            </div>
             <span>Time you want spend: </span>
             <span>
               <select
@@ -37,9 +40,11 @@ class SinglePackage extends React.Component {
                 className={this.state.selected ? 'selected-select' : ''}
                 disabled={this.state.selected}
                 onChange={(event) => this.setState({value: event.target.value})}>
-              <option value={`${singlePackage.category},${singlePackage.name},1`}>1</option>
-              <option value={`${singlePackage.category},${singlePackage.name},2`}>2</option>
-              <option value={`${singlePackage.category},${singlePackage.name},3`}>3</option>
+                {
+                  singlePackage && singlePackage.timetospend.map((value) => {
+                    return <option key={value} value={`${singlePackage.package},${singlePackage.name},${value}`}>{value}</option>
+                  })
+                }
             </select>
             </span>
         </span>
@@ -57,7 +62,7 @@ class SinglePackage extends React.Component {
         src={singlePackage.image} />
       <div className="short-description">
         <span>{singlePackage.description}</span>
-        <div className="websiteLink">Learn more at: <a href={singlePackage.website}>Website Link</a></div>
+        <div className="websiteLink"><a target="_blank" href={singlePackage.website}>Click here to learn more.</a></div>
       </div>
     </div>
   );

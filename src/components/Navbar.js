@@ -38,7 +38,9 @@ class Navbar extends React.Component {
             isOpen={this.state.modal}
             contentLabel="Modal"
             >
-              <AddressModal close={() => this.setState({modal: false})}visitinglocations={this.props.destinations.parent.locations} />
+              <AddressModal 
+                close={() => this.setState({modal: false})}
+                visitinglocations={this.props.destinations.parent.locations} />
         </Modal>
       </div>
     );

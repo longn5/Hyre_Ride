@@ -7,12 +7,13 @@ import * as driverActionCreators from '../actions/driver';
 import './DriverProfile.css';
 
 const AreaServed = ({areas, driverid}) => {
-  const areasArray = areas.split(',');
-  const mappedAreas = areasArray.map(value => (
-    <span key={value} style={{paddingRight: '10px'}}>
-      <Link to={`/package/${value.trim().toLowerCase()}/${driverid}`} >{value.trim()}</Link>
+  const mappedAreas = areas.map(obj => {
+    return (
+    <span key={obj.value} style={{paddingRight: '10px'}}>
+      <Link to={`/package/${obj.value.trim().toLowerCase()}/${driverid}`} >{obj.displayValue}</Link>
     </span>
-  ));
+  );
+});
   return <span>{mappedAreas}</span>;
 };
 
@@ -59,9 +60,13 @@ class DriverProfile extends React.Component {
       <div>
         <div className="driver-profile-information">
           <div className="profile-image">
-            <img width={250} height={200} src={driver ? driver.photoURL : ''} />
+            <div>
+              <img width={250} height={200} src={driver ? driver.photoURL : ''} />
+            </div>
             <div className="vehicle-info" onClick={() => this.setState({lightboxModal: true})}>
-              <div>Detailed Vehicle Description</div>
+              <div><h3>Vehicle Description</h3></div>
+                <div>{driver ? driver.vehicle : ''}</div>
+                <div style={{paddingBottom: '30px'}}>This vehicle has capacity for {driver ? driver.capacity : 0} people</div>
               <div className="vehicle-images-thumbnail">
 
                 <div className="vehicle-image-main">
@@ -72,8 +77,6 @@ class DriverProfile extends React.Component {
                   {driver ? <img height={60} src={driver.carImages[2]} /> : null }
                 </div>
               </div>
-              <div>{driver ? driver.vehicle : ''}</div>
-              <div>This vehicle has capacity for {driver ? driver.capacity : 0} people</div>
             </div>
           </div>
           <div className="driver-profile-long-description">

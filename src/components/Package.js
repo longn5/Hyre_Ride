@@ -9,8 +9,12 @@ const WrapPackageInRow = ({doublePackages}) => {
   return (
     <div className="winery-row">
       {
-         doublePackages.map((singlePackage, index) => (
-           <SinglePackage key={index} name={singlePackage.name} singlePackage={singlePackage} />))
+         doublePackages[0] &&
+           <SinglePackage name={doublePackages[0].name} singlePackage={doublePackages[0]} />
+      }
+      {
+         doublePackages[1] &&
+           <SinglePackage name={doublePackages[1].name} singlePackage={doublePackages[1]} />
       }
     </div>
   );

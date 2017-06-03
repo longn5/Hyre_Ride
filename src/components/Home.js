@@ -7,6 +7,13 @@ import DriverCard from './DriverCard';
 import * as driversActionCreators from '../actions/drivers';
 import './Home.css';
 
+// <Carousel showThumbs={false} >
+//
+//     <img
+//       height={300}
+//        src="http://wineryhunt.com/wp-content/uploads/2015/12/Wine_Vineyard-Large-File-1-1_2000x1000-2000x1200.jpg" />
+// <img src="http://bendoregonstock.com/wp-content/uploads/edd/2015/07/Broken-Top-Trail-1560x1045.jpg" />
+// </Carousel>
 class Home extends React.Component {
   componentWillMount() {
     this.props.driveActions.getAllDrivers();
@@ -16,13 +23,6 @@ class Home extends React.Component {
     return (
       <div>
         <div className="carouselContainer">
-        <Carousel showThumbs={false} >
-
-            <img
-              height={300}
-               src="http://kazzit.com/custom/domain_1/image_files/Custom_State_Page_Image/PRO_STATE_IMAGES/Portland_Oregon_Wineries_RESIZED.jpg" />
-  <img src="http://kazzit.com/custom/domain_1/image_files/Custom_State_Page_Image/PRO_STATE_IMAGES/Portland_Oregon_Wineries_RESIZED.jpg" />
-        </Carousel>
         </div>
         <div className="driver-card-contianer">
           {

@@ -1,47 +1,52 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import DatePicker from 'react-simple-datepicker';
-import 'react-simple-datepicker/dist/index.css';
-import { Link} from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
+import { withRouter} from 'react-router-dom';
 import './Address.css';
 import Stripe from './Stripe';
 
-const Hours = [8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7];
+const Hours = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 const TimesAM = Hours.map(value => `${value}:00AM`);
 const TimesPM = Hours.map(value => `${value}:00PM`);
-const AllTimes = TimesAM.concat(TimesPM);
+const AllTimes = TimesPM.concat(TimesAM);
 
-const AddressDateTimePicker = () => {
-  return (
-    <div className="addressDatePicker">
-      <span style={{color: 'white', marginTop: '8px'}}>
-        Select Pickup Date:
-      </span>
-      <DatePicker date={new Date()} />
-      <span style={{color: 'white', marginLeft: '10px', marginTop: '8px'}}>
-      Select Pickup Time:
-      </span>
-      <span style={{marginLeft: '10px', marginTop: '8px'}}>
-        <select value="8:00am" onChange={Function.prototype}>
-          {AllTimes.map(value => (
-            <option key={value} value={value}>{value}</option>)
-          )}
-        </select>
-      </span>
-    </div>
-  );
-};
+const StartDate = moment().add(24, 'hours');
+
+const ListVisitingLocations = ({locations}) => {
+  let locationsInfo = [];
+  for (let i in locations) {
+    locationsInfo.push(
+    <li className="locationName" key={i}>
+      <div>
+         <span>At,&nbsp;&nbsp;</span>
+         <a href="www.google.com">{i}</a>
+           <span>&nbsp; you will spend&nbsp;</span>
+           <span>{locations[i]}&nbsp;{locations[i] == 1 ? 'hour' : 'hours'}.</span>
+      </div>
+    </li>
+  )
+  }
+  return <ul>{locationsInfo}</ul>
+}
 
 class AddressModal extends React.Component {
   state = {
-    address: '',
-    city: '',
-    zip: '',
+    date: StartDate,
     number: '',
-    state: 'OR',
-    time: '',
+    time: '12pm',
+    paddress: '',
+    pcity: '',
+    pzip: '',
+    pstate: 'OR',
+    daddress: '',
+    dcity: '',
+    dzip: '',
+    dstate: 'OR',
     costs: false,
+    validate: true,
     states: [
       {value: 'OR', display: 'Oregon'},
       {value: 'WA', display: 'Washington'},
@@ -57,21 +62,71 @@ class AddressModal extends React.Component {
   }
 
   saveInfo = () => {
-    const data = {
-      address: this.state.address,
-      city: this.state.city,
-      zip: this.state.zip,
-      number: this.state.number,
-      state: this.state.state
-    };
+    var directionsService = new window.google.maps.DirectionsService();
 
-    if (data.address) {
-      this.props.onSave(data);
+    // let datavalidation = true;
+    // const data = {
+    //   time: this.state.time,
+    //   date: this.state.date,
+    //   number: this.state.number,
+    //   paddress: this.state.paddress,
+    //   pcity: this.state.pcity,
+    //   pzip: this.state.pzip,
+    //   pstate: this.state.pstate,
+    //   daddress: this.state.daddress,
+    //   dcity: this.state.dcity,
+    //   dzip: this.state.dzip,
+    //   dstate: this.state.dstate
+    // };
+    // console.log(data);
+    // for (const i in data) {
+    //   if (!data[i]) {
+    //     datavalidation = false;
+    //   }
+    // }
+    // console.log(datavalidation);
+    // if (datavalidation) {
+    //   this.setState({
+    //     validate: true
+    //   });
+    // } else {
+    //   this.setState({
+    //     validate: false
+    //   });
+    // }
+
+const googleMapTest = {
+  origin: '5671 SW remington Dr, Beaverton, OR, 97007',
+  destination: '5671 SW remington Dr, Beaverton, OR, 97007',
+  waypoints: [
+    {
+      location: '35040 Southwest Unger Road, Cornelius, OR 97113',
+      stopover: true
     }
+  ],
+  provideRouteAlternatives: false,
+  travelMode: 'DRIVING',
+  optimizeWaypoints: true,
+  drivingOptions: {
+    departureTime: new Date(),
+    trafficModel: 'pessimistic'
+  }
+};
+
+directionsService.route(googleMapTest, function(result, status) {
+  if (status === 'OK') {
+    console.log(result);
+  }
+});
+
   }
 
+  onDateChange = (value) => {
+    this.setState({date: value});
+  }
 
   render() {
+    console.log(this.state.date);
     return (
       <div className="addressmodal-container">
         <div className="addressmodal">
@@ -84,26 +139,44 @@ class AddressModal extends React.Component {
           </div>
         }
           <div className="visitlocations">
-            <span style={{paddingRight: '10px'}}>You will visit:</span>
-            <span style={{paddingRight: '10px'}}>Winery1,</span><span style={{paddingRight: '10px'}}>Winery2</span>
+            {!this.state.validate && <div style={{color: 'red'}}>*Please fill out all the fields to calculate costs</div>}
+            <span style={{paddingRight: '10px'}}>You will be visiting the following locations:</span>
+            <ListVisitingLocations locations={this.props.visitinglocations} />
           </div>
           <div style={{color: 'white'}}>Pickup Address:</div>
-          <AddressDateTimePicker />
-          <div className="addressmodalContent">
+            <div className="addressDatePicker">
+              <span style={{color: 'white', marginTop: '8px'}}>
+                Select Pickup Date:
+              </span>
+              <span style={{color: 'white', marginTop: '8px', marginLeft: '8px'}}>
+              <DatePicker selected={this.state.date} onChange={this.onDateChange} />
+              </span>
+              <span style={{color: 'white', marginLeft: '10px', marginTop: '8px'}}>
+              Select Pickup Time:
+              </span>
+              <span style={{marginLeft: '10px', marginTop: '8px'}}>
+                <select value="8:00am" onChange={Function.prototype}>
+                  {AllTimes.map(value => (
+                    <option key={value} value={value}>{value}</option>)
+                  )}
+                </select>
+              </span>
+            </div>
+            <div className="addressmodalContent">
             <div className="addressBottomMargin">
               <span className="addressLeftPadding">
                 Address:
               </span>
               <span>
                 <input
-                  value={this.state.address}
-                  onChange={event => this.setState({address: event.target.value})} />
+                  value={this.state.paddress}
+                  onChange={event => this.setState({paddress: event.target.value})} />
               </span>
             </div>
             <div className="addressBottomMargin">
               <span className="addressLeftPadding">State:</span>
               <span className="addressLeftPadding" >
-                <select value={this.state.state} onChange={this.onSelectChange}>
+                <select value={this.state.pstate} onChange={this.onSelectChange}>
                   {this.state.states.map(state => (
                     <option key={state.value} value={state.value}>{state.display}</option>)
                   )}
@@ -112,17 +185,17 @@ class AddressModal extends React.Component {
               <span className="addressLeftPadding">City:</span>
               <span className="addressLeftPadding">
                 <input
-                  value={this.state.city}
-                  onChange={event => this.setState({city: event.target.value})} />
+                  value={this.state.pcity}
+                  onChange={event => this.setState({pcity: event.target.value})} />
               </span>
             </div>
             <div className="addressBottomMargin">
               <span className="addressLeftPadding">Zip Code:</span>
               <span className="addressLeftPadding">
                 <input
-                  value={this.state.zip}
+                  value={this.state.pzip}
                   maxLength="5"
-                  onChange={event => this.setState({zip: event.target.value})} />
+                  onChange={event => this.setState({pzip: event.target.value})} />
               </span>
                 <span>
                   <span className="addressLeftPadding" >Phone Number:</span>
@@ -143,14 +216,14 @@ class AddressModal extends React.Component {
               </span>
               <span>
                 <input
-                  value={this.state.address}
-                  onChange={event => this.setState({address: event.target.value})} />
+                  value={this.state.daddress}
+                  onChange={event => this.setState({daddress: event.target.value})} />
               </span>
             </div>
             <div className="addressBottomMargin">
               <span className="addressLeftPadding">State:</span>
               <span className="addressLeftPadding" >
-                <select value={this.state.state} onChange={this.onSelectChange}>
+                <select value={this.state.dstate} onChange={this.onSelectChange}>
                   {this.state.states.map(state => (
                     <option key={state.value} value={state.value}>{state.display}</option>)
                   )}
@@ -159,24 +232,24 @@ class AddressModal extends React.Component {
               <span className="addressLeftPadding">City:</span>
               <span className="addressLeftPadding">
                 <input
-                  value={this.state.city}
-                  onChange={event => this.setState({city: event.target.value})} />
+                  value={this.state.dcity}
+                  onChange={event => this.setState({dcity: event.target.value})} />
               </span>
             </div>
             <div className="addressBottomMargin">
               <span className="addressLeftPadding">Zip Code:</span>
               <span className="addressLeftPadding">
                 <input
-                  value={this.state.zip}
+                  value={this.state.dzip}
                   maxLength="5"
-                  onChange={event => this.setState({zip: event.target.value})} />
+                  onChange={event => this.setState({dzip: event.target.value})} />
               </span>
             </div>
           </div>
           <div>
             <div className="address-buttons">
               <span onClick={this.props.close} className="address-button" >Cancel</span>
-              <span style={{marginRight: '10px'}} onClick={() => this.setState({costs: true})} className="address-button" >Calculate Costs</span>
+              <span style={{marginRight: '10px'}} onClick={this.saveInfo} className="address-button" >Calculate Costs</span>
             </div>
           </div>
         </div>
@@ -186,4 +259,4 @@ class AddressModal extends React.Component {
   }
 }
 
-export default AddressModal;
+export default withRouter(AddressModal);

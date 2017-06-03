@@ -10,8 +10,11 @@
 
 .visitlocations {
     color: white;
-    font-size: 20px;
     margin-bottom: 20px;
+}
+
+.locationName {
+    margin-left: 20px;
 }
 
 .totals {

@@ -11,13 +11,6 @@
     cursor: pointer;
     border-radius: 10px;
     border-color: rgba(6, 6, 6, 0.23);
-        /* margin-bottom: 20px; */
-}
-
-.card-container-visible:hover {
-    border-width: 1px;
-    border-color: rgba(30, 102, 182, 0.76)
-
 }
 
 .card-information {
@@ -34,11 +27,9 @@ img.image-container {
 .driver-name {
     font-size: 16px;
     font-weight: bold;
-    color: rgba(30, 28, 28, 0.67);
 }
 
 .highlighted-word {
-    color: rgba(63, 65, 181, 0.9);
     font-size: bold;
 }
 
@@ -47,5 +38,4 @@ img.image-container {
     padding-left: 10px;
     line-height: 1.6;
     font-style: italic;
-    color: rgba(63, 65, 181, 0.9);
 }

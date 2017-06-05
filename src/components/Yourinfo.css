@@ -1,0 +1,20 @@
+.yourinfo-container {
+    display: flex;
+    justify-content: center;
+}
+
+.yourinfo {
+    background: #1e66b6;
+    color: white;
+    padding: 45px;
+}
+
+.box-border {
+    border-width: 1px;
+    border-style: solid;
+    padding: 10px;
+}
+
+.flex {
+    display: flex;
+}

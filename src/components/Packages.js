@@ -14,7 +14,7 @@ class Packages extends React.Component {
   }
   render() {
     return (
-      <div className="package-container">
+      <div style={{marginTop: '60px'}}>
         <WrappedRowPackages packages={this.props.packages} Component={PackageDispaly} />
       </div>
     );

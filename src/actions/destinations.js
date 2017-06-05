@@ -1,5 +1,6 @@
 import actionType from '../constants/index';
 import { database } from '../config/firebase';
+import {getHoursFromLocations} from '../utils/utils';
 import DestinationModel from '../models/destination';
 
 const getDestinations = id => (dispatch) => {
@@ -8,12 +9,10 @@ const getDestinations = id => (dispatch) => {
     payload: []
   });
   database().ref(`/packages/${id}`).once('value').then((snapshot) => {
-    let destinations = [];
+    const destinations = [];
     snapshot.forEach((snapshotval) => {
       destinations.push(DestinationModel(snapshotval.val()));
     });
-
-    destinations.splice(1, 1);
     console.log(destinations);
     dispatch({
       type: actionType.DESTINATIONS_LOADED,
@@ -30,25 +29,58 @@ const getDestinations = id => (dispatch) => {
 
 const addSelectedDestination = value => (dispatch, getState) => {
   const valueParts = value.split(',');
-  let destinations = {};
-  if (getState().packages.destinations.parent) {
-    destinations = getState().packages.destinations;
-    destinations.parent.locations[valueParts[1]] = valueParts[2];
+  const payload = {
+    visitingLocations: {},
+    selectedLocation: value
+  };
+  let error = false;
+
+  if (getState().destinations.visitingLocations.parent.name) {
+    payload.visitingLocations = getState().destinations.visitingLocations;
+    const maxHoursExceeded = getHoursFromLocations(
+      payload.visitingLocations.parent.locations,
+      valueParts[2]
+    );
+
+    if (maxHoursExceeded) {
+      error = true;
+    } else {
+      payload.visitingLocations.parent.locations[valueParts[1]] = parseInt(valueParts[2], 10);
+    }
   } else {
-    destinations.parent = {
+    payload.visitingLocations.parent = {
       name: valueParts[0],
       locations: {
-        [valueParts[1]]: valueParts[2]
+        [valueParts[1]]: parseInt(valueParts[2], 10)
       }
     };
   }
-  dispatch({
-    type: actionType.DESTINATION_ADDED,
-    payload: destinations
-  });
+
+  if (error) {
+    dispatch({
+      type: actionType.ERROR,
+      payload: 'Please limit your visits to be less than 4 hours'
+    });
+  } else {
+    dispatch({
+      type: actionType.DESTINATION_ADDED,
+      payload
+    });
+  }
 };
 
 const removeDestinations = value => (dispatch, getState) => {
+  const valueParts = value.split(',');
+  const visitingLocations = getState().destinations.visitingLocations;
+  delete visitingLocations.parent.locations[valueParts[1]];
+
+  dispatch({
+    type: actionType.DESTINATION_ADDED,
+    payload: visitingLocations
+  });
+};
+
+const resetDestinations = value => (dispatch, getState) => {
   const valueParts = value.split(',');
   const destinations = getState().packages.destinations;
   delete destinations.parent.locations[valueParts[1]];

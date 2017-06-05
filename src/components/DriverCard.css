@@ -1,41 +1,62 @@
 .card-container {
-    margin-top: 20px;
-    max-width: 600px;
-}
-
-.card-container-visible {
-    padding: 20px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: ;
+    width: 400px;
+    height: 300px;
     cursor: pointer;
-    border-radius: 10px;
-    border-color: rgba(6, 6, 6, 0.23);
-}
-
-.card-information {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin-top: 20px;
-}
-
-img.image-container {
-    border-radius: 5px;
-}
-
-.driver-name {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.highlighted-word {
-    font-size: bold;
-}
-
-.profile-information {
-    margin-top: 15px;
+    border-width: 1px;
+    border-style: solid;
+    padding-top: 20px;
     padding-left: 10px;
-    line-height: 1.6;
-    font-style: italic;
+    padding-right: 10px;
+    margin: 10px;
+}
+.driver-info {
+    margin-bottom: 10px;
+}
+
+.profile-image-container {
+   display: flex;
+   justify-content: space-between;
+}
+
+.profile-image-holder {
+   height: 220px;
+   overflow: hidden;
+}
+
+.driver-button-selected {
+   padding: 5px;
+   border-style: solid;
+   border-width: 1px;
+   cursor: pointer;
+   text-align: center;
+   margin-top: 10px;
+   width: 100px;
+   margin-left: 0px;
+   background-color: rgba(0, 0, 255, 0.55);
+   color: #fafafa;
+}
+
+.driver-button-disabled {
+   padding: 5px;
+   border-style: solid;
+   border-width: 1px;
+   cursor: pointer;
+   text-align: center;
+   margin-top: 10px;
+   width: 100px;
+   margin-left: 0px;
+   color: #b3b2b2;
+}
+
+
+.driver-button {
+   padding: 5px;
+   border-style: solid;
+   border-width: 1px;
+   cursor: pointer;
+   text-align: center;
+   margin-top: 10px;
+   width: 100px;
+   margin-left: 0px;
+   color: rgba(63, 65, 181, 0.9);
 }

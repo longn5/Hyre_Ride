@@ -22,6 +22,23 @@ const getDriver = id => (dispatch) => {
   });
 };
 
+const passengerInfo = info => (dispatch) => {
+  dispatch({
+    type: actionType.PASSENGER_INFO,
+    payload: info
+  });
+};
+
+const selectDriver = id => (dispatch) => {
+  dispatch({
+    type: actionType.DRIVER_SELECTED,
+    payload: id
+  });
+};
+
+
 export {
-  getDriver
+  getDriver,
+  passengerInfo,
+  selectDriver
 };

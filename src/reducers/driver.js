@@ -2,7 +2,9 @@ import constants from '../constants/index';
 
 const initialState = {
   data: null,
-  loading: false
+  loading: false,
+  selectedDriver: null,
+  passengerinfo: null
 };
 
 export default (state = initialState, action) => {
@@ -17,6 +19,16 @@ export default (state = initialState, action) => {
         loading: false,
         data: action.payload
       };
+    case constants.DRIVER_SELECTED:
+      return Object.assign({}, {
+        state,
+        selectedDriver: action.payload
+      });
+    case constants.PASSENGER_INFO:
+      return Object.assign({}, {
+        state,
+        passengerinfo: action.payload
+      });
     case constants.ERROR:
       return Object.assign({}, {
         loading: false,

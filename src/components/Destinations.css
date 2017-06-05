@@ -1,0 +1,9 @@
+.destinations-header {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: #f0f0f0;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}

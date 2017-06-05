@@ -24,11 +24,9 @@ class Navbar extends React.Component {
         <div className="navbar-contents">
           <span className="navbar-brandName" onClick={() => this.props.history.push('/')}>Chauffr</span>
           <div style={{marginTop: '10px'}}>
-
             <span className="navbar-settings">About Us</span>
           </div>
         </div>
-
       </div>
     );
   }

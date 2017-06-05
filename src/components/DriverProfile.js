@@ -7,13 +7,11 @@ import * as driverActionCreators from '../actions/driver';
 import './DriverProfile.css';
 
 const AreaServed = ({areas, driverid}) => {
-  const mappedAreas = areas.map(obj => {
-    return (
+  const mappedAreas = areas.map(obj => (
     <span key={obj.value} style={{paddingRight: '10px'}}>
       <Link to={`/package/${obj.value.trim().toLowerCase()}/${driverid}`} >{obj.displayValue}</Link>
     </span>
-  );
-});
+  ));
   return <span>{mappedAreas}</span>;
 };
 

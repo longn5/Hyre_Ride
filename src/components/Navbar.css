@@ -1,5 +1,5 @@
 .navbar-container {
-    background: #1e66b6;
+  background: #1e66b6;
   color: #fafafa;
   position: fixed;
   top: 0;
@@ -10,18 +10,16 @@
 }
 
 .navbar-brandName {
-    padding-left: 20px;
-    margin-top: 10px;
+  padding-left: 20px;
+  margin-top: 10px;
 }
 
 .navbar-settings {
-    padding-right: 20px;
-    margin-top: 10px;
+  padding-right: 20px;
+  margin-top: 10px;
 }
 
 .navbar-contents {
-    display: flex;
-    justify-content: space-between;
-    /* justify-content: space-around; */
-    /* width: 100%; */
+  display: flex;
+  justify-content: space-between;
 }

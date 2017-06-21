@@ -21,15 +21,19 @@ class Destinations extends React.Component {
         this.props.locations,
         parseInt(this.state.value.split(',')[2], 10)
     );
-    if (!maxHoursExceeded) {
-      if (!setValue) {
-        this.props.destinationActions.removeDestinations(this.state.value);
-      } else {
-        this.props.destinationActions.addSelectedDestination(this.state.value);
-      }
+
+    if (!setValue) {
+      this.props.destinationActions.removeDestinations(this.state.value);
       this.setState({
         selected: setValue
       });
+    } else {
+      this.props.destinationActions.addSelectedDestination(this.state.value);
+      if (!maxHoursExceeded) {
+        this.setState({
+          selected: setValue
+        });
+      }
     }
   }
 
@@ -37,7 +41,6 @@ class Destinations extends React.Component {
     const {packageDispaly} = this.props;
     return (
       <div className="packageBox">
-        <div>{this.props.locationsError}</div>
         <div className="packageHeader">
           <span>
             <div className="coolWinery">

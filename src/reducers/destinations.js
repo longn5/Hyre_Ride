@@ -15,6 +15,11 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case constants.DESTINATION_ADDED:
       return Object.assign({}, state, {
+        visitingLocations: Object.assign({}, action.payload.visitingLocations),
+        error: null
+      });
+    case constants.DESTINATION_REMOVED:
+      return Object.assign({}, state, {
         visitingLocations: Object.assign({}, action.payload),
         error: null
       });

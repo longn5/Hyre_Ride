@@ -1,11 +1,11 @@
-import actionType from '../constants/index';
+import constant from '../constants/index';
 import { database } from '../config/firebase';
 import {getHoursFromLocations} from '../utils/utils';
 import DestinationModel from '../models/destination';
 
 const getDestinations = id => (dispatch) => {
   dispatch({
-    type: actionType.LOADING,
+    type: constant.LOADING,
     payload: []
   });
   database().ref(`/packages/${id}`).once('value').then((snapshot) => {
@@ -13,15 +13,14 @@ const getDestinations = id => (dispatch) => {
     snapshot.forEach((snapshotval) => {
       destinations.push(DestinationModel(snapshotval.val()));
     });
-    console.log(destinations);
     dispatch({
-      type: actionType.DESTINATIONS_LOADED,
+      type: constant.DESTINATIONS_LOADED,
       payload: destinations
     });
   })
   .catch(() => {
     dispatch({
-      type: actionType.ERROR,
+      type: constant.ERROR,
       payload: []
     });
   });
@@ -58,12 +57,12 @@ const addSelectedDestination = value => (dispatch, getState) => {
 
   if (error) {
     dispatch({
-      type: actionType.ERROR,
-      payload: 'Please limit your visits to be less than 4 hours'
+      type: constant.ERROR,
+      payload: `Please limit your time to be less than ${constant.TOTAL_TIME_TO_SPEND}`
     });
   } else {
     dispatch({
-      type: actionType.DESTINATION_ADDED,
+      type: constant.DESTINATION_ADDED,
       payload
     });
   }
@@ -73,28 +72,22 @@ const removeDestinations = value => (dispatch, getState) => {
   const valueParts = value.split(',');
   const visitingLocations = getState().destinations.visitingLocations;
   delete visitingLocations.parent.locations[valueParts[1]];
-
   dispatch({
-    type: actionType.DESTINATION_ADDED,
+    type: constant.DESTINATION_REMOVED,
     payload: visitingLocations
   });
 };
 
-const resetDestinations = value => (dispatch, getState) => {
-  const valueParts = value.split(',');
-  const destinations = getState().packages.destinations;
-  delete destinations.parent.locations[valueParts[1]];
-
-  dispatch({
-    type: actionType.DESTINATION_ADDED,
-    payload: destinations
-  });
-};
-  // let saveData = {
-  //   parent: data[0],
-  //   values: ''
-  // }
-  //
+// const resetDestinations = value => (dispatch, getState) => {
+//   const valueParts = value.split(',');
+//   const destinations = getState().packages.destinations;
+//   delete destinations.parent.locations[valueParts[1]];
+//
+//   dispatch({
+//     type: constant.DESTINATION_REMOVED,
+//     payload: destinations
+//   });
+// };
 
 export {
   removeDestinations,

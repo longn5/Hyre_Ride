@@ -12,7 +12,7 @@ class PackageDispaly extends React.Component {
           <div
             className="packageBox-display"
             onClick={() => history.push(`/package/${packageDispaly.rawValue}`)}
-            style={{ backgroundImage: url, backgroundSize: 'contain'}} >
+            style={{ backgroundImage: url, backgroundSize: 'cover'}} >
             <div className="package-display-header">
               <h1>{packageDispaly.name}</h1>
             </div>

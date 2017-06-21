@@ -9,6 +9,7 @@ import DriverCard from './DriverCard';
 import WrappedRowPackages from './WrappedRowPackages';
 import Yourinfo from './Yourinfo';
 import * as destinationsActionCreator from '../actions/destinations';
+import * as passengerInfoActionCreator from '../actions/passengerInfo';
 import './Packages.css';
 import './PackageDisplay.css';
 import './Destinations.css';
@@ -22,13 +23,22 @@ const States = {
 
 class Destinations extends React.Component {
   state = {
-    appState: States.pickLocations,
+    appState: States.yourinfo,
     selectedDriverId: null,
     passengersInformation: null
   }
 
   componentWillMount() {
     this.props.destinationsActions.getDestinations(this.props.match.params.packageid);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.passengerErrors) {
+      this.setState({
+        appState: States.pickDrivers
+      });
+      this.props.passengerInfoActions.resetValidation();
+    }
   }
 
   selectedDriver = (id) => {
@@ -38,7 +48,6 @@ class Destinations extends React.Component {
   }
 
   render() {
-    console.log(this.props.visitingLocations);
     const locationLength = Object.keys(this.props.visitingLocations.parent.locations).length;
     return (
       <div style={{paddingTop: '50px'}}>
@@ -99,6 +108,7 @@ class Destinations extends React.Component {
                 </span>
             }
           </div>
+          <div className="errorMessage">{this.props.errorMessage}</div>
           <div className="cartinformation" style={{marginRight: '40px'}}>
             {
             this.state.appState === States.pickLocations &&
@@ -117,7 +127,7 @@ class Destinations extends React.Component {
             }
             {
               this.state.appState === States.yourinfo &&
-              <div onClick={() => this.setState({appState: States.pickDrivers})}>
+              <div onClick={() => this.props.passengerInfoActions.validateAndSubmit()}>
                 Select Drivers
               </div>
             }
@@ -157,6 +167,8 @@ class Destinations extends React.Component {
 
 const mapStateToProps = (state) => {
   return ({
+    passengerErrors: state.passengerInfo.validated,
+    errorMessage: state.destinations.error,
     visitingLocations: state.destinations.visitingLocations,
     destinaitons: state.destinations.data,
     packageName: state.destinations.data.length ? capitalizeArrayStrings(state.destinations.data[0].package.split('_')) : '',
@@ -165,7 +177,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  destinationsActions: bindActionCreators(destinationsActionCreator, dispatch)
+  destinationsActions: bindActionCreators(destinationsActionCreator, dispatch),
+  passengerInfoActions: bindActionCreators(passengerInfoActionCreator, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Destinations);

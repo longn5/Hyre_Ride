@@ -5,11 +5,12 @@ import {Link} from 'react-router-dom';
 import 'react-responsive-carousel/lib/styles/carousel.css';
 import {capitalizeArrayStrings} from '../utils/utils';
 import Destination from './Destination';
-import DriverCard from './DriverCard';
 import WrappedRowPackages from './WrappedRowPackages';
 import Yourinfo from './Yourinfo';
+import Checkout from './Checkout';
 import * as destinationsActionCreator from '../actions/destinations';
 import * as passengerInfoActionCreator from '../actions/passengerInfo';
+import * as checkoutActionCreator from '../actions/checkout';
 import './Packages.css';
 import './PackageDisplay.css';
 import './Destinations.css';
@@ -23,28 +24,27 @@ const States = {
 
 class Destinations extends React.Component {
   state = {
-    appState: States.yourinfo,
-    selectedDriverId: null,
+    appState: States.pickLocations,
     passengersInformation: null
   }
 
-  componentWillMount() {
+  goToYourInfo  = () => {
+    this.props.destinationsActions.resetError();
+    this.setState({appState: States.yourinfo})
+  }
+
+  componentWillMount(){
     this.props.destinationsActions.getDestinations(this.props.match.params.packageid);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.passengerErrors) {
+    if (nextProps.validated) {
+      this.props.checkoutActions.getInfoFromGoogle();
       this.setState({
         appState: States.pickDrivers
       });
       this.props.passengerInfoActions.resetValidation();
     }
-  }
-
-  selectedDriver = (id) => {
-    this.setState({
-      selectedDriverId: id
-    });
   }
 
   render() {
@@ -89,24 +89,6 @@ class Destinations extends React.Component {
                   <span>Select Drivers</span>
                 </span>
             }
-            {
-              this.state.appState === States.checkout &&
-                <span>
-                  <span><Link to="/">Packages</Link></span>
-                  <span> &gt; </span>
-                  <span onClick={() => this.setState({appState: States.pickLocations})}>
-                    {this.props.packageName}
-                  </span>
-                  <span> &gt; </span>
-                  <span onClick={() => this.setState({appState: States.yourinfo})}>
-                  Your information
-                  </span>
-                  <span> &gt; </span>
-                  <span onClick={() => this.setState({appState: States.pickDrivers})}>
-                  Select Drivers
-                  </span>
-                </span>
-            }
           </div>
           <div className="errorMessage">{this.props.errorMessage}</div>
           <div className="cartinformation" style={{marginRight: '40px'}}>
@@ -116,8 +98,7 @@ class Destinations extends React.Component {
               {
               locationLength ?
                 <span
-                  onClick={() => this.setState({
-                    appState: States.yourinfo})}
+                  onClick={this.goToYourInfo}
                 >
                   Next
                 </span> :
@@ -129,12 +110,6 @@ class Destinations extends React.Component {
               this.state.appState === States.yourinfo &&
               <div onClick={() => this.props.passengerInfoActions.validateAndSubmit()}>
                 Select Drivers
-              </div>
-            }
-            {
-              this.state.appState === States.pickDrivers &&
-              <div onClick={() => this.setState({appState: States.checkout})}>
-                Checkout
               </div>
             }
           </div>
@@ -150,14 +125,7 @@ class Destinations extends React.Component {
             <Yourinfo />
           </div>
           <div style={{display: this.state.appState === States.pickDrivers ? 'block' : 'none'}}>
-            <WrappedRowPackages
-              packages={[{name: 1}, {name: 2}, {name: 3}, {name: 4}]}
-              selectedId={this.state.selectedDriverId}
-              Component={DriverCard}
-              onClickFn={this.selectedDriver} />
-          </div>
-          <div style={{display: this.state.appState === States.checkout ? 'block' : 'none'}}>
-             all checkout information
+            <Checkout />
           </div>
         </div>
       </div>
@@ -167,7 +135,7 @@ class Destinations extends React.Component {
 
 const mapStateToProps = (state) => {
   return ({
-    passengerErrors: state.passengerInfo.validated,
+    validated: state.passengerInfo.validated,
     errorMessage: state.destinations.error,
     visitingLocations: state.destinations.visitingLocations,
     destinaitons: state.destinations.data,
@@ -177,6 +145,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  checkoutActions: bindActionCreators(checkoutActionCreator, dispatch),
   destinationsActions: bindActionCreators(destinationsActionCreator, dispatch),
   passengerInfoActions: bindActionCreators(passengerInfoActionCreator, dispatch)
 });

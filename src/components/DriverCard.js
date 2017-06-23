@@ -4,11 +4,13 @@ import {bindActionCreators} from 'redux';
 import './DriverCard.css';
 import * as driverActionCreators from '../actions/driver';
 import { withRouter } from 'react-router-dom';
-//              for <span  // className="highlighted-word">{driver.rate}/hr</span>
-
 class DriverCard extends React.Component {
   state = {
     selectedid: null
+  }
+
+  componentWillMount() {
+
   }
 
   selectDriver = (id) => {
@@ -19,8 +21,8 @@ class DriverCard extends React.Component {
   }
 
   render() {
-    const {packageDispaly, history, selectedId, onClickFn} = this.props;
-    let driverClass = selectedId === packageDispaly ? 'driver-button-selected' : 'driver-button';
+    const {driverInfo, selectedDriverId, onClickFn} = this.props;
+    let driverClass = selectedDriverId === driverInfo ? 'driver-button-selected' : 'driver-button';
 
     return (
       <div>
@@ -32,6 +34,7 @@ class DriverCard extends React.Component {
           <div className="profile-image-container">
             <div className="profile-image-holder">
               <img
+                alt=''
                 width={200}
                 src="https://firebasestorage.googleapis.com/v0/b/driversforhire-37d4f.appspot.com/o/dan_image.jpg?alt=media&token=5ae57756-f8da-438e-9dfe-fc0e11e20ca9" />
             </div>
@@ -39,8 +42,11 @@ class DriverCard extends React.Component {
               <div className="grand-total">
                 <h3>Dan's Total: $139.00</h3>
               </div>
-              <div onClick={() => onClickFn(packageDispaly)} className={driverClass}>
+              <div onClick={() => onClickFn(driverInfo)} className={driverClass}>
                 Select Dan
+              </div>
+              <div onClick={() => onClickFn(driverInfo)} className="driver-button">
+                  View Profile
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@ class Destinations extends React.Component {
     super(props);
     this.state = {
       selected: false,
-      value: `${props.packageDispaly.package},${props.packageDispaly.name},1`
+      value: `${props.packageDispaly.package},${props.packageDispaly.name},1,${props.packageDispaly.address}`
     };
   }
 
@@ -55,7 +55,7 @@ class Destinations extends React.Component {
                 onChange={event => this.setState({value: event.target.value})}>
                 {
                   packageDispaly && packageDispaly.timetospend.map((value) => {
-                    return <option key={value} value={`${packageDispaly.package},${packageDispaly.name},${value}`}>{value}</option>
+                    return <option key={value} value={`${packageDispaly.package},${packageDispaly.name},${value},${packageDispaly.address}`}>{value}</option>
                   })
                 }
               </select>
@@ -70,6 +70,7 @@ class Destinations extends React.Component {
           </span>
         </div>
         <img
+          alt=''
           style={{paddingRight: '10px'}}
           width={400}
           src={packageDispaly.image} />

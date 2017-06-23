@@ -78,11 +78,18 @@ const removeDestinations = value => (dispatch, getState) => {
   });
 };
 
+const resetError = () => (dispatch) => {
+      dispatch({
+      type: constant.ERROR,
+      payload: null
+    });
+}
+
 // const resetDestinations = value => (dispatch, getState) => {
 //   const valueParts = value.split(',');
 //   const destinations = getState().packages.destinations;
 //   delete destinations.parent.locations[valueParts[1]];
-//
+
 //   dispatch({
 //     type: constant.DESTINATION_REMOVED,
 //     payload: destinations
@@ -92,5 +99,6 @@ const removeDestinations = value => (dispatch, getState) => {
 export {
   removeDestinations,
   getDestinations,
+  resetError,
   addSelectedDestination
 };

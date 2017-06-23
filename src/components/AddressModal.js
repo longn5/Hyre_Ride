@@ -64,37 +64,6 @@ class AddressModal extends React.Component {
   saveInfo = () => {
     var directionsService = new window.google.maps.DirectionsService();
 
-    // let datavalidation = true;
-    // const data = {
-    //   time: this.state.time,
-    //   date: this.state.date,
-    //   number: this.state.number,
-    //   paddress: this.state.paddress,
-    //   pcity: this.state.pcity,
-    //   pzip: this.state.pzip,
-    //   pstate: this.state.pstate,
-    //   daddress: this.state.daddress,
-    //   dcity: this.state.dcity,
-    //   dzip: this.state.dzip,
-    //   dstate: this.state.dstate
-    // };
-    // console.log(data);
-    // for (const i in data) {
-    //   if (!data[i]) {
-    //     datavalidation = false;
-    //   }
-    // }
-    // console.log(datavalidation);
-    // if (datavalidation) {
-    //   this.setState({
-    //     validate: true
-    //   });
-    // } else {
-    //   this.setState({
-    //     validate: false
-    //   });
-    // }
-
 const googleMapTest = {
   origin: '5671 SW remington Dr, Beaverton, OR, 97007',
   destination: '5671 SW remington Dr, Beaverton, OR, 97007',

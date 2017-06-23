@@ -99,7 +99,7 @@ class Yourinfo extends React.Component {
               <div style={{marginBottom: '5px'}}>Dropoff Address</div>
               <InputField label={'Address'} id="dAddress" value={dAddress} saveState={savePassengerInfo} />
               <InputField label={'City'} id="dCity" value={dCity} saveState={savePassengerInfo} />
-              <div>State: {pState}</div>
+              <div>State: {dState}</div>
               <InputField label={'Zip'} id="dZip" value={dZip} saveState={savePassengerInfo} />
             </div>
           </div>

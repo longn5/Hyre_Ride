@@ -59,7 +59,7 @@ class DriverProfile extends React.Component {
         <div className="driver-profile-information">
           <div className="profile-image">
             <div>
-              <img width={250} height={200} src={driver ? driver.photoURL : ''} />
+              <img width={250} height={200} src={driver ? driver.photoURL : ''} alt='' />
             </div>
             <div className="vehicle-info" onClick={() => this.setState({lightboxModal: true})}>
               <div><h3>Vehicle Description</h3></div>
@@ -68,11 +68,11 @@ class DriverProfile extends React.Component {
               <div className="vehicle-images-thumbnail">
 
                 <div className="vehicle-image-main">
-                  {driver ? <img height={125} src={driver.carImages[0]} /> : null }
+                  {driver ? <img height={125} src={driver.carImages[0]} alt='' /> : null }
                 </div>
                 <div className="vehicle-image-sides">
-                  {driver ? <img height={60} style={{paddingBottom: '5px'}}src={driver.carImages[1]} /> : null }
-                  {driver ? <img height={60} src={driver.carImages[2]} /> : null }
+                  {driver ? <img height={60} style={{paddingBottom: '5px'}}src={driver.carImages[1]} alt='' /> : null }
+                  {driver ? <img height={60} src={driver.carImages[2]} alt='' /> : null }
                 </div>
               </div>
             </div>

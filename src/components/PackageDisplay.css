@@ -6,7 +6,9 @@
     border-style: solid;
     padding-left: 10px;
     padding-right: 10px;
+    border-color: rgb(154, 82, 215);
     filter: saturate(0.6);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .package-display-header {

@@ -27,7 +27,7 @@ const getDestinations = id => (dispatch) => {
 };
 
 const addSelectedDestination = value => (dispatch, getState) => {
-  const valueParts = value.split(',');
+  const valueParts = value.split('++');
   const payload = {
     visitingLocations: {},
     selectedLocation: value
@@ -44,13 +44,13 @@ const addSelectedDestination = value => (dispatch, getState) => {
     if (maxHoursExceeded) {
       error = true;
     } else {
-      payload.visitingLocations.parent.locations[valueParts[1]] = parseInt(valueParts[2], 10);
+      payload.visitingLocations.parent.locations[valueParts[1]] = `${valueParts[2]}++${valueParts[3]}`;
     }
   } else {
     payload.visitingLocations.parent = {
       name: valueParts[0],
       locations: {
-        [valueParts[1]]: parseInt(valueParts[2], 10)
+        [valueParts[1]]: `${valueParts[2]}++${valueParts[3]}`
       }
     };
   }

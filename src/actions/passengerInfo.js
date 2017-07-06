@@ -5,17 +5,17 @@ const noError = {errorMessage: null};
 const errorString = 'You should enter a valid';
 
 const errorLabels = {
-    phoneNumber: `${errorString} Phone Number`,
-    pAddress: `${errorString} Pickup Address`,
-    pCity: `${errorString} Pickup City`,
-    pZip: `${errorString} Pickup Zip`,
-    dAddress: `${errorString} Dropoff Address`,
-    dCity: `${errorString} Dropoff City`,
-    dZip: `${errorString} Dropoff Zip`,
-    firstName: `${errorString} First Name`,
-    lastName: `${errorString} Last Name`,
-    email: `${errorString} Email`
-}
+  phoneNumber: `${errorString} Phone Number`,
+  pAddress: `${errorString} Pickup Address`,
+  pCity: `${errorString} Pickup City`,
+  pZip: `${errorString} Pickup Zip`,
+  dAddress: `${errorString} Dropoff Address`,
+  dCity: `${errorString} Dropoff City`,
+  dZip: `${errorString} Dropoff Zip`,
+  firstName: `${errorString} First Name`,
+  lastName: `${errorString} Last Name`,
+  email: `${errorString} Email`
+};
 
 function validateEmail(email) {
   if (!email) return false;
@@ -25,16 +25,16 @@ function validateEmail(email) {
 
 function validatePhoneNumber(number) {
   if (!number) return false;
-  let matchNumbers = number.match(/\d/g);
+  const matchNumbers = number.match(/\d/g);
   if (!matchNumbers) return false;
 
   return matchNumbers.length === 10;
 }
 
 function validateZip(zip) {
-    if (!zip) return false;
+  if (!zip) return false;
 
-  let matchNumbers = zip.match(/\d/g);
+  const matchNumbers = zip.match(/\d/g);
   if (!matchNumbers) return false;
 
   return matchNumbers.length === 5;
@@ -101,15 +101,13 @@ const validateAndSubmit = () => (dispatch, getState) => {
     }
   });
 
-  let infoToValidate = Object.values(passengerInfo.errors);
-  console.log('infoTovalidate', infoToValidate);
+  const infoToValidate = Object.values(passengerInfo.errors);
   let infoValidated = true;
   for (let i = 0; i < infoToValidate.length; i++) {
-      if (infoToValidate[i]) {
-        infoValidated = false;
-      }
+    if (infoToValidate[i]) {
+      infoValidated = false;
+    }
   }
-
   dispatch({
     type: actionType.CHECK_VALIDATION,
     payload: infoValidated

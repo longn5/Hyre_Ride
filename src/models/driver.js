@@ -8,7 +8,7 @@ function getStringChunks(str, cunkSize) {
   return stringChunks;
 }
 
-const Driver = (data) => {
+const Driver = (data, key) => {
   let areaServed = data.packages.split(',');
   areaServed = areaServed.map((value) => {
     return {
@@ -20,9 +20,10 @@ const Driver = (data) => {
   const driverData = {
     name: data.name,
     photoURL: data.profilePicture,
-    id: data.id,
+    id: key,
+    hourRate: data.hourRate,
+    mileRate: data.mileRate,
     carImages: data.carimages,
-    rate: data.rate,
     capacity: data.capacity,
     areaServed,
     vehicle: `${capitalize(data.vmake)}, ${capitalize(data.vmodel)}, ${data.vyear}`,

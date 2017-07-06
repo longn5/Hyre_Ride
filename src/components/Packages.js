@@ -15,6 +15,9 @@ class Packages extends React.Component {
   render() {
     return (
       <div style={{marginTop: '60px'}}>
+        <h3 style={{display: 'flex', justifyContent: 'center', color: '#3c7eff'}}>
+          Pick from one of the packages below to plan your adventure
+        </h3>
         <WrappedRowPackages packages={this.props.packages} Component={PackageDispaly} />
       </div>
     );

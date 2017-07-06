@@ -28,9 +28,9 @@ class Destinations extends React.Component {
     passengersInformation: null
   }
 
-  goToYourInfo  = () => {
+  goToYourInfo = () => {
     this.props.destinationsActions.resetError();
-    this.setState({appState: States.yourinfo})
+    this.setState({appState: States.yourinfo});
   }
 
   componentWillMount(){
@@ -56,7 +56,7 @@ class Destinations extends React.Component {
             {
               this.state.appState === States.pickLocations &&
                 <span>
-                  <span><Link to="/">Packages</Link></span>
+                  <span className="span-link" onClick={() => window.location.replace(`${window.location.origin}`)}>Packages</span>
                   <span> &gt; </span>
                   <span>{this.props.packageName}</span>
                 </span>
@@ -64,9 +64,9 @@ class Destinations extends React.Component {
             {
               this.state.appState === States.yourinfo &&
                 <span>
-                  <span><Link to="/">Packages</Link></span>
+                  <span className="span-link" onClick={() => window.location.replace(`${window.location.origin}`)}>Packages</span>
                   <span> &gt; </span>
-                  <span onClick={() => this.setState({appState: States.pickLocations})}>
+                  <span className="span-link" onClick={() => this.setState({appState: States.pickLocations})}>
                     {this.props.packageName}
                   </span>
                   <span> &gt; </span>
@@ -76,13 +76,13 @@ class Destinations extends React.Component {
             {
               this.state.appState === States.pickDrivers &&
                 <span>
-                  <span><Link to="/">Packages</Link></span>
+                  <span className="span-link"  onClick={() => window.location.replace(`${window.location.origin}`)}>Packages</span>
                   <span> &gt; </span>
-                  <span onClick={() => this.setState({appState: States.pickLocations})}>
+                  <span className="span-link" onClick={() => this.setState({appState: States.pickLocations})}>
                     {this.props.packageName}
                   </span>
                   <span> &gt; </span>
-                  <span onClick={() => this.setState({appState: States.yourinfo})}>
+                  <span className="span-link"  onClick={() => this.setState({appState: States.yourinfo})}>
                   Your information
                   </span>
                   <span> &gt; </span>
@@ -90,7 +90,10 @@ class Destinations extends React.Component {
                 </span>
             }
           </div>
-          <div className="errorMessage">{this.props.errorMessage}</div>
+          <div className="errorMessage">
+            {this.props.errorMessage}
+            {(this.state.appState === States.yourinfo && this.props.validated === false) && 'Make sure you fill out all the field before you can select your driver.'}
+          </div>
           <div className="cartinformation" style={{marginRight: '40px'}}>
             {
             this.state.appState === States.pickLocations &&
@@ -99,6 +102,7 @@ class Destinations extends React.Component {
               locationLength ?
                 <span
                   onClick={this.goToYourInfo}
+                  className="span-link"
                 >
                   Next
                 </span> :
@@ -108,9 +112,9 @@ class Destinations extends React.Component {
             }
             {
               this.state.appState === States.yourinfo &&
-              <div onClick={() => this.props.passengerInfoActions.validateAndSubmit()}>
+              <span className="span-link" onClick={() => this.props.passengerInfoActions.validateAndSubmit()}>
                 Select Drivers
-              </div>
+              </span>
             }
           </div>
         </div>
@@ -125,7 +129,8 @@ class Destinations extends React.Component {
             <Yourinfo />
           </div>
           <div style={{display: this.state.appState === States.pickDrivers ? 'block' : 'none'}}>
-            <Checkout />
+            { this.state.appState === States.pickDrivers &&
+              <Checkout drivers={this.props.drivers} /> }
           </div>
         </div>
       </div>
@@ -139,6 +144,7 @@ const mapStateToProps = (state) => {
     errorMessage: state.destinations.error,
     visitingLocations: state.destinations.visitingLocations,
     destinaitons: state.destinations.data,
+    drivers: state.drivers.data,
     packageName: state.destinations.data.length ? capitalizeArrayStrings(state.destinations.data[0].package.split('_')) : '',
     loading: state.destinations.loading
   });

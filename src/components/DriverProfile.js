@@ -63,16 +63,16 @@ class DriverProfile extends React.Component {
             </div>
             <div className="vehicle-info" onClick={() => this.setState({lightboxModal: true})}>
               <div><h3>Vehicle Description</h3></div>
-                <div>{driver ? driver.vehicle : ''}</div>
-                <div style={{paddingBottom: '30px'}}>This vehicle has capacity for {driver ? driver.capacity : 0} people</div>
+              <div>{driver ? driver.vehicle : ''}</div>
+              <div style={{paddingBottom: '30px'}}>This vehicle has capacity for {driver ? driver.capacity : 0} people</div>
               <div className="vehicle-images-thumbnail">
 
                 <div className="vehicle-image-main">
-                  {driver ? <img height={125} src={driver.carImages[0]} alt='' /> : null }
+                  {driver ? <img height={125} src={driver.carImages[0]} alt="" /> : null }
                 </div>
                 <div className="vehicle-image-sides">
-                  {driver ? <img height={60} style={{paddingBottom: '5px'}}src={driver.carImages[1]} alt='' /> : null }
-                  {driver ? <img height={60} src={driver.carImages[2]} alt='' /> : null }
+                  {driver ? <img height={60} style={{paddingBottom: '5px'}}src={driver.carImages[1]} alt="" /> : null }
+                  {driver ? <img height={60} src={driver.carImages[2]} alt="" /> : null }
                 </div>
               </div>
             </div>

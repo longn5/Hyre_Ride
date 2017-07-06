@@ -1,51 +1,52 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import { withRouter } from 'react-router-dom';
 import './DriverCard.css';
 import * as driverActionCreators from '../actions/driver';
-import { withRouter } from 'react-router-dom';
+
 class DriverCard extends React.Component {
   state = {
     selectedid: null
   }
 
-  componentWillMount() {
+  getCosts = () => {
+    let costs = 0;
+    if (this.props.totals) {
+      const {totalDistanceMiles, totalDurationMinutes} = this.props.totals;
+      const totalMiles = totalDistanceMiles * this.props.driverInfo.mileRate;
+      const totalDuration = (totalDurationMinutes / 60) * this.props.driverInfo.hourRate;
+      costs = totalMiles + totalDuration;
+    }
 
-  }
-
-  selectDriver = (id) => {
-    this.setState({
-      selectedid: id
-    });
-    this.props.driveActions.selectDriver(id);
+    return costs;
   }
 
   render() {
     const {driverInfo, selectedDriverId, onClickFn} = this.props;
-    let driverClass = selectedDriverId === driverInfo ? 'driver-button-selected' : 'driver-button';
-
+    const driverClass = selectedDriverId === driverInfo ? 'driver-button-selected' : 'driver-button';
     return (
       <div>
         <div className="card-container">
           <div className="driver-info">
-            <div>Drive with John Doe in Corolla, Toyota 2010</div>
-            <div>This vehicle holds upto 4 people</div>
+            <div>Drive with {driverInfo.name} in {driverInfo.vehicle}</div>
+            <div>This vehicle holds upto {driverInfo.capacity} people</div>
           </div>
           <div className="profile-image-container">
             <div className="profile-image-holder">
               <img
-                alt=''
+                alt="driver"
                 width={200}
-                src="https://firebasestorage.googleapis.com/v0/b/driversforhire-37d4f.appspot.com/o/dan_image.jpg?alt=media&token=5ae57756-f8da-438e-9dfe-fc0e11e20ca9" />
+                src={driverInfo.photoURL} />
             </div>
             <div className="total-other-info">
               <div className="grand-total">
-                <h3>Dan's Total: $139.00</h3>
+                <h3>{driverInfo.name}&#39;s Total: ${Math.ceil(this.getCosts())}</h3>
               </div>
               <div onClick={() => onClickFn(driverInfo)} className={driverClass}>
                 Select Dan
               </div>
-              <div onClick={() => onClickFn(driverInfo)} className="driver-button">
+              <div onClick={() => window.open(`${window.location.origin}/profile/${driverInfo.id}`, '_blank')} className="driver-button">
                   View Profile
               </div>
             </div>
@@ -58,14 +59,16 @@ class DriverCard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return ({
+    totals: state.checkout.totals,
     drivers: state.drivers.data,
     loading: state.drivers.loading
   });
 };
 
 const mapDispatchToProps = dispatch => ({
-  destinationActions: bindActionCreators(driverActionCreators, dispatch)
+  driverActions: bindActionCreators(driverActionCreators, dispatch)
 });
 
 

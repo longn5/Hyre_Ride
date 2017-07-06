@@ -3,8 +3,7 @@ import constants from '../constants/index';
 const initialState = {
   data: null,
   loading: false,
-  selectedDriver: null,
-  passengerinfo: null
+  selectedDriver: null
 };
 
 export default (state = initialState, action) => {
@@ -32,7 +31,7 @@ export default (state = initialState, action) => {
     case constants.ERROR:
       return Object.assign({}, {
         loading: false,
-        data: []
+        data: null
       });
     default:
       return state;

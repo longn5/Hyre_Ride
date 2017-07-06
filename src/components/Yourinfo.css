@@ -9,12 +9,59 @@
     padding: 45px;
 }
 
+.date-time-picker {
+    padding-left: 20px;
+}
+
+.rdtCounter .rdtBtn:hover {
+    background: #2e5e94;
+}
+
+.date-time-button {
+    border: 1px;
+    display: inline-block;
+    border-color: black;
+    border-style: solid;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: white;
+    color: black;
+    cursor: pointer;
+}
+
 .box-border {
     border-width: 1px;
     border-style: solid;
     padding: 10px;
+    min-height: 360px;
+    margin-right: 20px;
+    width: 400px;
+    margin-bottom: 20px;
 }
 
 .flex {
     display: flex;
+}
+
+.rdtPicker thead tr:first-child th:hover {
+    background: #2e5e94;
+}
+
+.yourinfo-input {
+    margin-top: 5px;
+    border: 0;
+    font-size: 18px;
+    padding-left: 20px;
+    background-color: #fafafa;
+    width: 80%;
+}
+
+.rdtPicker td.rdtDay:hover, .rdtPicker td.rdtHour:hover, .rdtPicker td.rdtMinute:hover, .rdtPicker td.rdtSecond:hover, .rdtPicker .rdtTimeToggle:hover {
+    background: #2e5e94;
+    cursor: pointer;
+}
+
+.rdtPicker {
+    background: #233952 !important;
 }

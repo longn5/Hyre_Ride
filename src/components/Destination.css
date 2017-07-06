@@ -40,8 +40,12 @@ select.selected-select {
 }
 
 .packageBox {
+    font-weight: 600;
     width: 400px;
+    font-size: 18px;
+    color: rgb(154, 82, 215);
     margin-left: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     border-width: 1px;
     border-style: solid;
     padding-top: 20px;

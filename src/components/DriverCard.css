@@ -8,7 +8,12 @@
     padding-left: 10px;
     padding-right: 10px;
     margin: 10px;
+    box-shadow: 0 0 7px 0px rgba(0, 0, 0, 0.41);
 }
+.total-other-info {
+    padding-left: 30px;
+}
+
 .driver-info {
     margin-bottom: 10px;
 }

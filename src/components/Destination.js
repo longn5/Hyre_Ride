@@ -10,7 +10,7 @@ class Destinations extends React.Component {
     super(props);
     this.state = {
       selected: false,
-      value: `${props.packageDispaly.package},${props.packageDispaly.name},1,${props.packageDispaly.address}`
+      value: `${props.packageDispaly.package}++${props.packageDispaly.name}++1++${props.packageDispaly.address}`
     };
   }
 
@@ -19,7 +19,7 @@ class Destinations extends React.Component {
 
     const maxHoursExceeded = getHoursFromLocations(
         this.props.locations,
-        parseInt(this.state.value.split(',')[2], 10)
+        parseInt(this.state.value.split('++')[2], 10)
     );
 
     if (!setValue) {
@@ -44,9 +44,9 @@ class Destinations extends React.Component {
         <div className="packageHeader">
           <span>
             <div className="coolWinery">
-              <div style={{color: 'black'}}>{packageDispaly.name}</div>
+              <div>{packageDispaly.name}</div>
             </div>
-            <span>Time you want spend: </span>
+            <span>Time you plan to spend here: </span>
             <span>
               <select
                 value={this.state.value}
@@ -55,7 +55,7 @@ class Destinations extends React.Component {
                 onChange={event => this.setState({value: event.target.value})}>
                 {
                   packageDispaly && packageDispaly.timetospend.map((value) => {
-                    return <option key={value} value={`${packageDispaly.package},${packageDispaly.name},${value},${packageDispaly.address}`}>{value}</option>
+                    return <option key={value} value={`${packageDispaly.package}++${packageDispaly.name}++${value}++${packageDispaly.address}`}>{value} hour/s</option>
                   })
                 }
               </select>
@@ -86,7 +86,6 @@ class Destinations extends React.Component {
 
 const mapStateToProps = (state) => {
   return ({
-    locationsError: state.destinations.error,
     locations: state.destinations.visitingLocations.parent.locations
   });
 };

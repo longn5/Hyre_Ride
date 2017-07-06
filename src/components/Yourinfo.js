@@ -1,35 +1,40 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import DateTime from 'react-datetime';
+import moment from 'moment';
+import 'react-datetime/css/react-datetime.css';
 import './Yourinfo.css';
 import * as passengerInfoActionCreator from '../actions/passengerInfo';
 
-const Hours = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-const TimesAM = Hours.map(value => `${value}:00AM`);
-const TimesPM = Hours.map(value => `${value}:00PM`);
-const AllTimes = TimesPM.concat(TimesAM);
-
-const InputField = ({label, value, saveState, id}) => {
+const InputField = ({label, value, saveState, id, readOnly}) => {
   return (
-    <div style={{marginBottom: '5px'}}>
-      <span style={{marginRight: '5px'}}>
+    <div style={{marginBottom: '10px'}}>
+      <div style={{marginRight: '20px', fontSize: '18px'}}>
         {label}:
-      </span>
-      <span>
+      </div>
+      <div>
         <input
+          className="yourinfo-input"
           type="text"
-          style={{width: '150px'}}
+          readOnly={readOnly || false}
           value={value}
           onChange={event => saveState({id, value: event.target.value})} />
-      </span>
+      </div>
     </div>
   );
 };
 
+const today = moment();
+const valid = (current) => {
+  return current.isAfter(today);
+};
 
 class Yourinfo extends React.Component {
+
+  state = {
+    openDatePicker: false
+  }
 
   onSelectChange = (event) => {
     this.setState({
@@ -38,72 +43,67 @@ class Yourinfo extends React.Component {
   }
 
   onDateChange = (value) => {
-    this.props.passgerInfoActions.savePassengerInfo({id: 'pDate', value});
-  }
-
-  onTimeChange = (value) => {
-    this.props.passgerInfoActions.savePassengerInfo({id: 'pTime', value});
+    this.props.passgerInfoActions.savePassengerInfo({id: 'pDateTime', value});
   }
 
   render() {
-    const {firstName, lastName, email, phoneNumber, pDate,
-      pTime, pAddress, pState, pCity, pZip, dAddress, dState,
+    const {firstName, lastName, email, phoneNumber, pDateTime,
+       pAddress, pCity, pZip, dAddress,
       dCity, dZip} = this.props.passengerInfo;
     const {savePassengerInfo} = this.props.passgerInfoActions;
-    console.log(this.props)
     return (
       <div className="yourinfo-container">
         <div className="yourinfo">
           <div className="flex">
-            <div className="box-border" style={{marginBottom: '10px'}}>
-              <div style={{marginBottom: '5px'}}>Your Information:</div>
+            <div className="yourinfo-margin-right">
+              <div style={{marginBottom: '5px', fontSize: '22px'}}>Your Information:</div>
+                <div className="box-border">
+
               <InputField label={'First Name'} id="firstName" value={firstName} saveState={savePassengerInfo} />
               <InputField label={'Last Name'} id="lastName" value={lastName} saveState={savePassengerInfo} />
               <InputField label={'Email'} id="email" value={email} saveState={savePassengerInfo} />
               <InputField label={'Phone Number'} id="phoneNumber" value={phoneNumber} saveState={savePassengerInfo} />
+              </div>
             </div>
-            <div className="box-border" style={{marginBottom: '10px', marginLeft: '10px'}}>
-              <div style={{marginBottom: '5px'}}>Date/Time:</div>
-              <div style={{marginBottom: '8px'}}>
-                <span style={{marginTop: '8px'}}>
-                  Select Pickup Date:
-                </span>
-                <span style={{marginTop: '8px', marginLeft: '10px'}}>
-                  <DatePicker selected={pDate} onChange={this.onDateChange} />
-                </span>
+            <div >
+              <div style={{marginBottom: '5px', fontSize: '22px'}}>Select Date And Time:</div>
+              <div className="box-border">
+                <div className="date-time-picker">
+                  <div style={{fontSize: '18px', marginBottom: '10px'}}>
+                    Selected: {pDateTime.format('dddd, MMMM, h:mm a')}
+                  </div>
+                  <DateTime
+                    input={false}
+                    value={pDateTime}
+                    isValidDate={valid}
+                    onChange={this.onDateChange} />
+
+                </div>
+
+              </div>
+            </div>
+            </div>
+            <div className="flex">
+              <div>
+                <div style={{marginBottom: '5px', fontSize: '22px'}}>Pickup Information:</div>
+                <div className="box-border" style={{minHeight: '250px'}}>
+                  <InputField label={'Address'} id="pAddress" value={pAddress} saveState={savePassengerInfo} />
+                  <InputField label={'City'} id="pCity" value={pCity} saveState={savePassengerInfo} />
+                  <InputField label={'State'} id="dCity" value={'OR'} readOnly saveState={savePassengerInfo} />
+                  <InputField label={'Zip'} id="pZip" value={pZip} saveState={savePassengerInfo} />
+                </div>
               </div>
               <div>
-                <span style={{marginTop: '8px'}}>
-                  Select Pickup Time:
-                </span>
-                <span style={{marginLeft: '10px', marginTop: '8px'}}>
-                  <select value={pTime} onChange={this.onTimeChange}>
-                    {AllTimes.map(value => (
-                      <option key={value} value={value}>{value}</option>)
-                    )}
-                  </select>
-                </span>
+                <div style={{marginBottom: '5px', fontSize: '22px'}}>Dropoff Information:</div>
+                <div className="box-border" style={{minHeight: '250px'}}>
+                  <InputField label={'Address'} id="dAddress" value={dAddress} saveState={savePassengerInfo} />
+                  <InputField label={'City'} id="dCity" value={dCity} saveState={savePassengerInfo} />
+                  <InputField label={'State'} id="dCity" value={'OR'} readOnly saveState={savePassengerInfo} />
+                  <InputField label={'Zip'} id="dZip" value={dZip} saveState={savePassengerInfo} />
+                </div>
               </div>
             </div>
           </div>
-
-          <div className="flex">
-            <div className="box-border" style={{marginBottom: '10x', marginRight: '10px', width: '280px'}}>
-              <div style={{marginBottom: '5px'}}>Pickup Address</div>
-              <InputField label={'Address'} id="pAddress" value={pAddress} saveState={savePassengerInfo} />
-              <InputField label={'City'} id="pCity" value={pCity} saveState={savePassengerInfo} />
-              <div>State: {pState}</div>
-              <InputField label={'Zip'} id="pZip" value={pZip} saveState={savePassengerInfo} />
-            </div>
-            <div className="box-border" style={{marginBottom: '10x', marginRight: '10px', width: '280px'}}>
-              <div style={{marginBottom: '5px'}}>Dropoff Address</div>
-              <InputField label={'Address'} id="dAddress" value={dAddress} saveState={savePassengerInfo} />
-              <InputField label={'City'} id="dCity" value={dCity} saveState={savePassengerInfo} />
-              <div>State: {dState}</div>
-              <InputField label={'Zip'} id="dZip" value={dZip} saveState={savePassengerInfo} />
-            </div>
-          </div>
-        </div>
       </div>
     );
   }

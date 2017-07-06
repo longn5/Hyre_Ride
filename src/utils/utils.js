@@ -15,7 +15,7 @@ function capitalizeArrayStrings(array) {
 function getHoursFromLocations(locations, lastValueToadd) {
   const hours = Object.values(locations);
   let sum = hours.reduce((previous, current) => {
-    return previous + current;
+    return parseInt(previous, 10) + parseInt(current, 10);
   }, 0);
 
   sum += parseInt(lastValueToadd, 10);

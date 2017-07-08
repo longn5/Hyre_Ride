@@ -3,28 +3,51 @@ import constants from '../constants/index';
 
 const StartDate = moment().add(24, 'hours');
 
+const testFields = {
+  pDateTime: StartDate,
+  phoneNumber: '9049454597',
+  pAddress: '220 N Adair St',
+  pCity: 'Cornelius',
+  pZip: '97113',
+  pState: 'OR',
+  dAddress: '220 N Adair St',
+  dCity: 'Cornelius',
+  dZip: '97113',
+  dState: 'OR',
+  firstName: 'Test',
+  lastName: 'Man',
+  email: 'Test.man@gmail.com',
+  costs: false,
+  validate: null,
+  states: [
+    {value: 'OR', display: 'Oregon'}
+  ]
+}
+
+const prodFields = {
+  pDateTime: StartDate,
+  phoneNumber: '',
+  pAddress: '',
+  pCity: '',
+  pZip: '',
+  pState: 'OR',
+  dAddress: '',
+  dCity: '',
+  dZip: '',
+  dState: 'OR',
+  firstName: '',
+  lastName: '',
+  email: '',
+  costs: false,
+  validate: null,
+  states: [
+    {value: 'OR', display: 'Oregon'}
+  ]
+}
+
 const initialState = {
   validated: null,
-  fields: {
-    pDateTime: StartDate,
-    phoneNumber: '9049454597',
-    pAddress: '5671 sw remington dr',
-    pCity: 'beaverton',
-    pZip: '97007',
-    pState: 'OR',
-    dAddress: '5671 sw remington dr',
-    dCity: 'Beaverton',
-    dZip: '97007',
-    dState: 'or',
-    firstName: 'Sudesh',
-    lastName: 'Banskota',
-    email: 'sudesh.banskota@gmail.com',
-    costs: false,
-    validate: null,
-    states: [
-      {value: 'OR', display: 'Oregon'}
-    ]
-  },
+  fields: prodFields,
   errors: {
     phoneNumber: null,
     pAddress: null,

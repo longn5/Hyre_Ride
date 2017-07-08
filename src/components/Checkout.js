@@ -41,7 +41,16 @@ class Checkout extends React.Component {
       const hours = value.split('++')[0];
       transformedLocations.push(`At, ${key.toUpperCase()} you will spend ${hours.toUpperCase()} hour/s`);
     });
+    if (!drivers.length) {
 
+        return (
+          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <div style={{fontSize: '80px'}}>🙁</div>
+            <div style={{fontSize: '40px'}}>No Drivers are available at this date</div>
+            <div style={{fontSize: '40px'}}>Please go back and try a different date</div>
+        </div>
+      );
+    }
     return (
       <div className="checkout-page">
         <div className="drivers-info">

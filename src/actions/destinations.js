@@ -40,7 +40,6 @@ const addSelectedDestination = value => (dispatch, getState) => {
       payload.visitingLocations.parent.locations,
       valueParts[2]
     );
-
     if (maxHoursExceeded) {
       error = true;
     } else {
@@ -58,7 +57,7 @@ const addSelectedDestination = value => (dispatch, getState) => {
   if (error) {
     dispatch({
       type: constant.ERROR,
-      payload: `Please limit your time to be less than ${constant.TOTAL_TIME_TO_SPEND}`
+      payload: `Please limit your time to be less than ${constant.TOTAL_TIME_TO_SPEND} hours`
     });
   } else {
     dispatch({

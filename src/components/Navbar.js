@@ -11,7 +11,6 @@ class Navbar extends React.Component {
     super(props);
   }
   render() {
-    console.log(this.props.location);
     let defaultClass = 'navbar-container',
         defaultCircle = 'circle-logo',
         defaultInitials = 'initials';
@@ -27,18 +26,19 @@ class Navbar extends React.Component {
             <span className={defaultCircle}>
               <span className={defaultInitials}>HR</span>
             </span>
-           <span>Hyre Ride</span>  
+           <span>Hyre Ride</span>
           </span>
           <div style={{marginTop: '10px'}}>
             <span className="navbar-settings"
               onClick={() => window.location.replace(`${window.location.origin}/packages`)}>
               Book Now
             </span>
-            <span className="navbar-settings">Drive With Us</span>
+            <span className="navbar-settings" onClick={() => this.props.history.push('/driver')}>Drive With Us</span>
             <span className="navbar-settings"
-              onClick={() => window.location.replace(`${window.location.origin}/about`)}>
+              onClick={() =>this.props.history.push('/about')}>
               About Us</span>
-            <span className="navbar-settings">Contact Us</span>
+            <span className="navbar-settings"
+                onClick={() =>this.props.history.push('/contact')}>Contact Us</span>
           </div>
         </div>
       </div>

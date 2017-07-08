@@ -1,4 +1,30 @@
 .navbar-container {
+  background: rgba(0, 0, 0, 0.36);
+  color: #ffffff;
+  position: fixed;
+  top: 0;
+  min-height: 50px;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.initials{
+  display: block;
+  font-size: 10px;
+  padding-top: 3px;
+}
+.circle-logo{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  background: #688be7;
+  margin-right: 3px;
+}
+
+.app-navbar-container {
   background: #1e66b6;
   color: #fafafa;
   position: fixed;
@@ -17,6 +43,11 @@
 .navbar-settings {
   padding-right: 20px;
   margin-top: 10px;
+  cursor: pointer;
+}
+
+.navbar-settings:hover {
+  color: yellow;
 }
 
 .navbar-contents {

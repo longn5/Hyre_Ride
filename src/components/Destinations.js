@@ -56,7 +56,7 @@ class Destinations extends React.Component {
             {
               this.state.appState === States.pickLocations &&
                 <span>
-                  <span className="span-link" onClick={() => window.location.replace(`${window.location.origin}`)}>Packages</span>
+                  <span className="span-link" onClick={() => window.location.replace(`${window.location.origin}/packages`)}>Packages</span>
                   <span> &gt; </span>
                   <span>{this.props.packageName}</span>
                 </span>
@@ -64,7 +64,7 @@ class Destinations extends React.Component {
             {
               this.state.appState === States.yourinfo &&
                 <span>
-                  <span className="span-link" onClick={() => window.location.replace(`${window.location.origin}`)}>Packages</span>
+                  <span className="span-link" onClick={() => window.location.replace(`${window.location.origin}/packages`)}>Packages</span>
                   <span> &gt; </span>
                   <span className="span-link" onClick={() => this.setState({appState: States.pickLocations})}>
                     {this.props.packageName}
@@ -76,7 +76,7 @@ class Destinations extends React.Component {
             {
               this.state.appState === States.pickDrivers &&
                 <span>
-                  <span className="span-link"  onClick={() => window.location.replace(`${window.location.origin}`)}>Packages</span>
+                  <span className="span-link"  onClick={() => window.location.replace(`${window.location.origin}/packages`)}>Packages</span>
                   <span> &gt; </span>
                   <span className="span-link" onClick={() => this.setState({appState: States.pickLocations})}>
                     {this.props.packageName}
@@ -102,7 +102,7 @@ class Destinations extends React.Component {
               locationLength ?
                 <span
                   onClick={this.goToYourInfo}
-                  className="span-link"
+                  className="span-button-header "
                 >
                   Next
                 </span> :
@@ -112,7 +112,7 @@ class Destinations extends React.Component {
             }
             {
               this.state.appState === States.yourinfo &&
-              <span className="span-link" onClick={() => this.props.passengerInfoActions.validateAndSubmit()}>
+              <span className="span-button-header " onClick={() => this.props.passengerInfoActions.validateAndSubmit()}>
                 Select Drivers
               </span>
             }
@@ -122,6 +122,7 @@ class Destinations extends React.Component {
           <div style={{display: this.state.appState === States.pickLocations ? 'block' : 'none'}}>
             <WrappedRowPackages
               packages={this.props.destinaitons}
+              instructions="Select the places you want to visit. You can pick and choose the time you want to spend at each location."
               Component={Destination}
             />
           </div>

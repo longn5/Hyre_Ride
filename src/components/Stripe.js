@@ -8,7 +8,7 @@ import * as driverActionCreators from '../actions/driver';
 class Stripe extends React.Component {
   onToken = (token) => {
     this.props.driverActions.addTrip(token, this.props.driverId).then(() => {
-        window.location.replace(`${window.location.origin}/thankYou`);
+        window.location.replace(`${window.location.origin}/thankYou/customer`);
     });
   }
   render() {

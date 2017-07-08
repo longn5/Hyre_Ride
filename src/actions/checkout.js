@@ -8,9 +8,10 @@ const getInfoFromGoogle = () => (dispatch, getState) => {
   const origin = getState().passengerInfo.fields.pAddress;
   const destination = getState().passengerInfo.fields.dAddress;
   const locations = Object.values(getState().destinations.visitingLocations.parent.locations);
-
+  const idleHours = [];
   const waypoints = locations.map((value) => {
     const data = value.split('++');
+    idleHours.push(parseInt(data[0]));
     return {
       location: data[1],
       stopover: true
@@ -38,9 +39,13 @@ const getInfoFromGoogle = () => (dispatch, getState) => {
       let totalDuration = 0;
       const miles = 0.000621371;
 
-      for (let i = 0; i < data.length; ++i) {
+      for (let i = 0; i < data.length; i++) {
         totalDistance += data[i].distance.value;
         totalDuration += data[i].duration.value;
+      }
+
+      for (let i = 0; i < idleHours.length; i++) {
+          totalDuration = idleHours[i] + totalDuration;
       }
 
       dispatch({

@@ -6,15 +6,6 @@ import {bindActionCreators} from 'redux';
 import * as driverActionCreators from '../actions/driver';
 import './DriverProfile.css';
 
-const AreaServed = ({areas, driverid}) => {
-  const mappedAreas = areas.map(obj => (
-    <span key={obj.value} style={{paddingRight: '10px'}}>
-      <Link to={`/package/${obj.value.trim().toLowerCase()}/${driverid}`} >{obj.displayValue}</Link>
-    </span>
-  ));
-  return <span>{mappedAreas}</span>;
-};
-
 class DriverProfile extends React.Component {
   state = {
     pickupAddressModal: false,
@@ -87,9 +78,6 @@ class DriverProfile extends React.Component {
                 </span>
               </div>
               <div>
-                <div className="driver-profile-book">
-                    Tours: {driver ? <AreaServed areas={driver.areaServed} driverid={driver.id} /> : ''}
-                </div>
               </div>
             </div>
             <div className="driver-profile-bio-text">

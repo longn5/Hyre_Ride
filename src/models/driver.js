@@ -18,7 +18,8 @@ const Driver = (data, key) => {
   });
 
   const driverData = {
-    name: data.name,
+    name: data.fullName,
+    firstName: data.firstName,
     photoURL: data.profilePicture,
     id: key,
     hourRate: data.hourRate,

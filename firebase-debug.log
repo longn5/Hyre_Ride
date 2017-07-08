@@ -1,0 +1,33 @@
+[debug] [2017-07-08T19:31:41.357Z] ----------------------------------------------------------------------
+[debug] [2017-07-08T19:31:41.360Z] Command:      /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-07-08T19:31:41.360Z] CLI Version:  3.9.1
+[debug] [2017-07-08T19:31:41.360Z] Platform:     darwin
+[debug] [2017-07-08T19:31:41.360Z] Node Version: v6.3.1
+[debug] [2017-07-08T19:31:41.361Z] Time:         Sat Jul 08 2017 12:31:41 GMT-0700 (PDT)
+[debug] [2017-07-08T19:31:41.361Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-07-08T19:31:41.374Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-07-08T19:31:41.374Z] > authorizing via signed-in user
+[debug] [2017-07-08T19:31:41.376Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-07-08T19:31:41.376Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/YxgSJWAesGetFbwxzZvzjZqVc0_uM6roiAaVsHgqaFE',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Jul 08 2017 12:31:41 GMT-0700 (PDT)
+[debug] [2017-07-08T19:31:41.620Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-08T19:31:41.626Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/driversforhire-37d4f  
+ Sat Jul 08 2017 12:31:41 GMT-0700 (PDT)
+[debug] [2017-07-08T19:31:42.263Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-08T19:31:42.264Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/driversforhire-37d4f/tokens  
+ Sat Jul 08 2017 12:31:42 GMT-0700 (PDT)
+[debug] [2017-07-08T19:31:42.770Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'driversforhire-37d4f'...
+[info] 
+[info] i  deploying hosting
+[info] i  hosting: preparing build directory for upload...
+[debug] [2017-07-08T19:31:44.201Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/driversforhire-37d4f/uploads/-KoYfvCZXFVOFp4ShFMQ?fileCount=9&message=  
+ Sat Jul 08 2017 12:31:44 GMT-0700 (PDT)
+[debug] [2017-07-08T19:31:50.639Z] <<< HTTP RESPONSE 200
+[debug] [2017-07-08T19:31:50.639Z] [hosting] .tgz uploaded successfully, waiting for extraction

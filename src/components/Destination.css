@@ -5,7 +5,6 @@
 select.selected-select {
     background: #7373ff;
     color: white;
-    width: 50px;
 }
 
 .package-button-selected {
@@ -52,6 +51,10 @@ select.selected-select {
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 10px;
+}
+
+.package-button:hover {
+ color: rgb(69, 197, 94);
 }
 
 .package-button {

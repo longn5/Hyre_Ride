@@ -49,36 +49,40 @@ class Checkout extends React.Component {
         </div>
 
         <div className="checkout-info">
-          Please Review your information:
-          <div>You region: {packageName}</div>
-          <div>Locations you will visit</div>
+          {this.state.selectedDriverId &&
+            <div>
+            <Stripe driverId={this.state.selectedDriverId} />
+          </div>
+         }
+          <h3>Please Review your information:</h3>
+          <div className="checkout-locations">Locations you will visit:</div>
           {
-            transformedLocations.map(value => <div key={value}>{value}</div>)
+            transformedLocations.map((value, index) =>
+            <div style={{paddingLeft: '20px'}} key={value}>{index + 1}) {value}</div>)
           }
-          <div>
-            Name: {passengerInfo.firstName.toUpperCase()}&nbsp;
+          <div><h3>Your Information:</h3></div>
+          <div style={{paddingBottom: '10px'}}>
+            {passengerInfo.firstName.toUpperCase()}&nbsp;
             {passengerInfo.lastName.toUpperCase()}
           </div>
-          <div>
-            <div>Pickup information:</div>
-            <div>
+          <div style={{paddingBottom: '20px'}}>
+            <div style={{fontWeight: 'bold', paddingBottom: '10px'}}>Pickup information:</div>
+            <div style={{paddingLeft: '20px'}}>
               <div>{passengerInfo.pAddress.toUpperCase()}</div>
               <div>{passengerInfo.pCity.toUpperCase()}&nbsp;
                 {passengerInfo.pState.toUpperCase()}&nbsp;
                 {passengerInfo.pZip}</div>
             </div>
           </div>
-          <div>
-            <div>Dropoff information:</div>
-            <div>
+          <div style={{paddingBottom: '20px'}}>
+            <div style={{fontWeight: 'bold', paddingBottom: '10px'}}>Dropoff information:</div>
+            <div style={{paddingLeft: '20px'}}>
               <div>{passengerInfo.dAddress.toUpperCase()}</div>
               <div>{passengerInfo.dCity.toUpperCase()}&nbsp;
                 {passengerInfo.dState.toUpperCase()}&nbsp;
                 {passengerInfo.dZip}</div>
             </div>
           </div>
-          <div>Payment Information</div>
-          {this.state.selectedDriverId && <Stripe driverId={this.state.selectedDriverId} /> }
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import actionType from '../constants/index';
 import { database } from '../config/firebase';
 import DriverModel from '../models/driver';
+import moment from 'moment';
 
 const getDriver = id => (dispatch) => {
   dispatch({
@@ -22,8 +23,22 @@ const getDriver = id => (dispatch) => {
   });
 };
 
+const addNewDriver = (perspectiveDrivers) => {
+  const newPostKey = database().ref().child('/perspectiveDrivers').push().key;
+  const updates = {};
+  updates[`/perspectivedrivers/${newPostKey}`] = perspectiveDrivers;
+  return database().ref().update(updates);
+}
 
-const addTrip = (token, driver) => (dispatch, getState) => {
+const addComments = (comments) => {
+  const newPostKey = database().ref().child('/comments').push().key;
+  const updates = {};
+  updates[`/comments/${newPostKey}`] = comments;
+  return database().ref().update(updates);
+}
+
+
+const addTrip = (token, driver, bookingHours) => (dispatch, getState) => {
   const passenger = getState().passengerInfo.fields;
   const postData = {
     driver: driver.id,
@@ -31,6 +46,8 @@ const addTrip = (token, driver) => (dispatch, getState) => {
     passengerInfo: {
       firstName: passenger.firstName,
       lastName: passenger.lastName,
+      booking_hours: bookingHours,
+      booking_date: moment().format(),
       pick_street: passenger.pAddress,
       pick_city: passenger.pCity,
       pick_state: passenger.pState,
@@ -41,7 +58,7 @@ const addTrip = (token, driver) => (dispatch, getState) => {
       drop_city: passenger.dCity,
       drop_state: passenger.dState,
       drop_zip: passenger.dZip,
-      pick_time: passenger.pDateTime.format('dddd, MMMM, h:mm a'),
+      pick_time: passenger.pDateTime.format(),
       locationInfo: {
         packageName: getState().destinations.visitingLocations.parent.name,
         destinations: getState().destinations.visitingLocations.parent.locations
@@ -59,5 +76,7 @@ const addTrip = (token, driver) => (dispatch, getState) => {
 
 export {
   getDriver,
+  addComments,
+  addNewDriver,
   addTrip
 };

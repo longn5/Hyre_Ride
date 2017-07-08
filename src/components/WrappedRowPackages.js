@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WrappedRowPackages = ({packages, Component, selectedId, onClickFn, onErrorFn}) => {
+const WrappedRowPackages = ({packages, Component, selectedId, onClickFn, onErrorFn, instructions}) => {
   const wrappedRowPackages = [];
   for (let i = 0; i < packages.length; i += 2) {
     if (!packages[i + 1]) {
@@ -34,7 +34,14 @@ const WrappedRowPackages = ({packages, Component, selectedId, onClickFn, onError
     }
   }
 
-  return <span>{wrappedRowPackages}</span>;
+  return <span>
+    {instructions &&
+      <h3 style={{display: 'flex', justifyContent: 'center', color: '#3c7eff'}}>
+        {instructions}
+      </h3>
+    }
+    {wrappedRowPackages}
+  </span>;
 };
 
 export default WrappedRowPackages;

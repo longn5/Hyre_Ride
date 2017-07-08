@@ -7,7 +7,7 @@ import 'react-datetime/css/react-datetime.css';
 import './Yourinfo.css';
 import * as passengerInfoActionCreator from '../actions/passengerInfo';
 
-const InputField = ({label, value, saveState, id, readOnly}) => {
+const InputField = ({label, value, saveState, id, readOnly, placeholder}) => {
   return (
     <div style={{marginBottom: '10px'}}>
       <div style={{marginRight: '20px', fontSize: '18px'}}>
@@ -18,6 +18,7 @@ const InputField = ({label, value, saveState, id, readOnly}) => {
           className="yourinfo-input"
           type="text"
           readOnly={readOnly || false}
+          placeholder={placeholder}
           value={value}
           onChange={event => saveState({id, value: event.target.value})} />
       </div>
@@ -120,3 +121,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Yourinfo);
+export {InputField}

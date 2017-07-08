@@ -1,0 +1,80 @@
+.landing-container {
+    color: #fff;
+    height: 100%;
+    font-weight: bold;
+}
+
+.backgroundimage {
+    background-image: url('../images/background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.plan-your-adventure {
+    margin-top: 80px;
+}
+
+.plan-your-adventure-button:hover {
+    color: yellow;
+}
+.plan-your-adventure-button {
+    border-style: solid;
+    padding: 10px;
+    border-width: 1px;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(210, 30, 30, 0.7);
+}
+
+.landing-title {
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 80px;
+    color: #ffffff;
+    font-family: 'Comfortaa', cursive;
+}
+
+.landing-how-it-works-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    font-size: 30px;
+}
+
+p.landing-destinations-data {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+h4.landing-destinations-header {
+    font-size: 30px;
+}
+
+.landing-how-it-work {
+    display: flex;
+        font-size: initial;
+    justify-content: space-around;
+}
+
+.landing-destinations {
+    margin-left: 10px;
+    width: 350px;
+    overflow-wrap: break-word;
+    background: rgba(0, 0, 0, 0.57);
+}
+
+.landing-text {
+    padding-top: 80px;
+    font-family: 'Comfortaa', cursive;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+    font-size: 75px;
+    line-height: 75px;
+}

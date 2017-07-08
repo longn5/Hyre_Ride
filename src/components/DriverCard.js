@@ -44,7 +44,7 @@ class DriverCard extends React.Component {
                 <h3>{driverInfo.name}&#39;s Total: ${Math.ceil(this.getCosts())}</h3>
               </div>
               <div onClick={() => onClickFn(driverInfo)} className={driverClass}>
-                Select Dan
+                Select {driverInfo.firstName}
               </div>
               <div onClick={() => window.open(`${window.location.origin}/profile/${driverInfo.id}`, '_blank')} className="driver-button">
                   View Profile

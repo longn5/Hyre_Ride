@@ -33,7 +33,6 @@ const getInfoFromGoogle = () => (dispatch, getState) => {
 
   directionsService.route(googleMapTest, (result, status) => {
     if (status === 'OK') {
-      console.log(result)
       const data = result.routes[0].legs;
       let totalDistance = 0;
       let totalDuration = 0;

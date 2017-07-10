@@ -1,6 +1,7 @@
 import { database } from '../config/firebase';
 import actionType from '../constants/index';
 import DriverModel from '../models/driver';
+import moment from 'moment';
 
 const getAllDrivers = () => (dispatch, getState) => {
   const customerTime = getState().passengerInfo.fields.pDateTime.utc();
@@ -16,8 +17,8 @@ const getAllDrivers = () => (dispatch, getState) => {
         const seconds = obj.hours * 3600;
         const start = obj.date_UTC;
         const end = obj.date_UTC + seconds;
-        if (customerTime >= start && customerTime <= end) {
-          drivers.push(DriverModel(snapshotval.val(), Object.keys(snapshot.val())[0]));
+        if (moment(customerTime).unix() >= start && moment(customerTime).unix() <= end) {
+          drivers.push(DriverModel(snapshotval.val(), snapshotval.key));
         }
       });
     });

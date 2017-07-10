@@ -47,7 +47,7 @@ const prodFields = {
 
 const initialState = {
   validated: null,
-  fields: prodFields,
+  fields: testFields,
   errors: {
     phoneNumber: null,
     pAddress: null,

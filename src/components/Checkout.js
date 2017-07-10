@@ -41,7 +41,7 @@ class Checkout extends React.Component {
       const hours = value.split('++')[0];
       transformedLocations.push(`At, ${key.toUpperCase()} you will spend ${hours.toUpperCase()} hour/s`);
     });
-    if (!drivers.length) {
+    if (!drivers.length && !this.props.loading) {
 
         return (
           <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>

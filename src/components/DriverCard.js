@@ -59,7 +59,6 @@ class DriverCard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return ({
     totals: state.checkout.totals,
     drivers: state.drivers.data,

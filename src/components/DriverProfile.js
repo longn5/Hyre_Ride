@@ -73,7 +73,7 @@ class DriverProfile extends React.Component {
               <div className="name-header">
                 <span style={{color: 'green'}}>
                   <span style={{color: 'black', paddingRight: '10px'}}>
-                    {driver ? driver.name : ''} ${driver ? driver.rate : ''}/hr</span>Verified
+                    {driver ? driver.name : ''}</span>Verified
                     <i style={{paddingLeft: '5px', fontStyle: 'italic'}} className="fa fa-check" />
                 </span>
               </div>

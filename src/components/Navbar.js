@@ -20,14 +20,14 @@ class Navbar extends React.Component {
     return (
       <div className={defaultClass}>
         <div className="navbar-contents">
-          <span className="navbar-settings"
+          <div className="navbar-settings"
             style={{marginLeft: '10px'}}
             onClick={() => this.props.history.push('/')}>
             <span className={defaultCircle}>
               <span className={defaultInitials}>HR</span>
             </span>
            <span>Hyre Ride</span>
-          </span>
+          </div>
           <div style={{marginTop: '10px'}}>
             <span className="navbar-settings"
               onClick={() => window.location.replace(`${window.location.origin}/packages`)}>

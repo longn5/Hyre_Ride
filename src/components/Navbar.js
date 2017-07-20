@@ -11,37 +11,29 @@ class Navbar extends React.Component {
     super(props);
   }
   render() {
-    let defaultClass = 'navbar-container',
-        defaultCircle = 'circle-logo',
-        defaultInitials = 'initials';
+    let defaultClass = 'navbar navbar-default navbar-fixed-top';
     if (this.props.location.pathname != '/') {
-      defaultClass = 'app-navbar-container';
+      defaultClass = 'navbar navbar-default navbar-fixed-top app-navbar';
     }
     return (
-      <div className={defaultClass}>
-        <div className="navbar-contents">
-          <div className="navbar-settings"
-            style={{marginLeft: '10px'}}
-            onClick={() => this.props.history.push('/')}>
-            <span className={defaultCircle}>
-              <span className={defaultInitials}>HR</span>
-            </span>
-           <span>Hyre Ride</span>
-          </div>
-          <div style={{marginTop: '10px'}}>
-            <span className="navbar-settings"
-              onClick={() => window.location.replace(`${window.location.origin}/packages`)}>
-              Book Now
-            </span>
-            <span className="navbar-settings" onClick={() => this.props.history.push('/driver')}>Drive With Us</span>
-            <span className="navbar-settings"
-              onClick={() =>this.props.history.push('/about')}>
-              About Us</span>
-            <span className="navbar-settings"
-                onClick={() =>this.props.history.push('/contact')}>Contact Us</span>
-          </div>
+      <nav className={defaultClass}>
+      <div className="container-fluid">
+        <div className="navbar-header">
+          <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" >
+            <span style={{color: 'white'}} className="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+          <a className="navbar-brand" href={window.location.origin}>Hyre Ride</a>
+        </div>
+        <div id="navbar" className="navbar-collapse collapse">
+          <ul className="nav navbar-nav navbar-right">
+            <li className=''><a href={`${window.location.origin}/packages`}>Book Now</a></li>
+            <li className=''><a href={`${window.location.origin}/driver`}>Drive With Us</a></li>
+            <li className=''><a href={`${window.location.origin}/about`}>About Us</a></li>
+            <li className=''><a href={`${window.location.origin}/contact`}>Contact Us</a></li>
+          </ul>
         </div>
       </div>
+    </nav>
     );
   }
 }

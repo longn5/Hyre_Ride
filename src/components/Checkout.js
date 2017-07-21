@@ -60,6 +60,8 @@ class Checkout extends React.Component {
         <div className="checkout-info">
           {this.state.selectedDriverId &&
             <div>
+            <div>Only Pay your booking fee</div>
+            <div>Driver will collect the trip fees!</div>
             <Stripe driverId={this.state.selectedDriverId} />
           </div>
          }

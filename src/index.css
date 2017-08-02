@@ -1,0 +1,10 @@
+body {
+  background: rgba(0, 128, 0, 0.06);
+  font-family: 'Open Sans', sans-serif;
+}
+
+select {
+    background: transparent;
+    font-size: 14px;
+    height: 29px;
+}

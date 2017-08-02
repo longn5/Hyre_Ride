@@ -1,0 +1,47 @@
+.circle-logo{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  background: #688be7;
+  margin-right: 3px;
+}
+
+.navbar-default {
+    background-color: rgba(0, 0, 0, 0.33);
+    border-color: rgba(231, 231, 231, 0);
+}
+
+.app-navbar {
+  background-color: #0254da;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #f5f5f5;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: rgba(221, 221, 221, 0);
+}
+
+.navbar-default .navbar-toggle:hover {
+    background: rgba(221, 221, 221, 0);
+}
+
+.navbar-default .navbar-toggle:focus {
+    background: rgba(221, 221, 221, 0);
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: yellow;
+}
+
+a.navbar-brand {
+    color: white !important;
+}
+
+a.navbar-brand:hover {
+  color: yellow !important;
+}

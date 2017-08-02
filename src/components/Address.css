@@ -1,0 +1,66 @@
+.addressmodal-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.visitlocations {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.locationName {
+    margin-left: 20px;
+}
+
+.totals {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: #fefefe;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.addressmodal {
+    background: rgb(30, 102, 182);
+        margin-top: 40px;
+        padding: 30px;
+        width: 600px;
+}
+
+span.addressLeftPadding {
+    margin-right: 5px;
+}
+
+.address-buttons {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    flex-direction: row-reverse;
+    display: flex;
+}
+
+.addressBottomMargin {
+    margin-bottom: 10px;
+}
+
+span.address-button {
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    color: white
+}
+
+.addressmodalContent {
+    color: white
+}
+
+.addressDatePicker {
+    display: flex;
+    padding-bottom: 10px;
+}

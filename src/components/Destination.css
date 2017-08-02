@@ -1,0 +1,67 @@
+.coolWinery {
+    padding-bottom: 10px;
+}
+
+select.selected-select {
+    background: #7373ff;
+    color: white;
+}
+
+.package-button-selected {
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    margin-left: 10px;
+    background-color: rgba(0, 0, 255, 0.55);
+    color: #fafafa;
+}
+
+.packageHeader {
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.short-description {
+    padding: 20px;
+    max-width: 350px;
+}
+
+.websiteLink {
+    text-decoration: underline;
+    color: blue;
+    margin-top: 10px;
+}
+
+.packagepadding {
+    margin: 20px;
+}
+
+.packageBox {
+    font-weight: 600;
+    width: 400px;
+    font-size: 18px;
+    color: rgb(154, 82, 215);
+    margin-left: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-width: 1px;
+    border-style: solid;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.package-button:hover {
+ color: rgb(69, 197, 94);
+}
+
+.package-button {
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    margin-left: 10px;
+    color: rgba(63, 65, 181, 0.9);
+}

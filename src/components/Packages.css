@@ -1,0 +1,11 @@
+.two-packages-row {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 850px) {
+    .two-packages-row {
+        flex-direction: column;
+        align-items: center;
+    }
+}

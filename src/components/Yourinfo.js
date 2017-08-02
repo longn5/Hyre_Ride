@@ -13,15 +13,17 @@ const InputField = ({label, value, saveState, id, readOnly, placeholder}) => {
       <div style={{marginRight: '20px', fontSize: '18px'}}>
         {label}:
       </div>
-      <div>
+    <form className="form-inline">
+      <div className="form-group">
         <input
-          className="yourinfo-input"
+          className="yourinfo-input form-control"
           type="text"
           readOnly={readOnly || false}
           placeholder={placeholder}
           value={value}
           onChange={event => saveState({id, value: event.target.value})} />
       </div>
+    </form>
     </div>
   );
 };

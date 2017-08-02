@@ -1,0 +1,13 @@
+Need to Make a general css for About.js , DriverInfo.js , ContactUs.js
+Add bootstrap to About, DriverInfo, ContactUs
+
+Changes:
+	InputField in Yourinfo.js
+		-added boostrap form controls
+	Fixes
+		-a few typos
+
+Fixes for another time:
+
+	Need to change background color of the navbar toggle when expanded
+	because the transpancy interferes which the menu lettering

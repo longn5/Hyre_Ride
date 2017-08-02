@@ -16,7 +16,6 @@ class DriverInfo extends React.Component {
   }
 
   handleClick = (newDriver) => {
-    console.log(addNewDriver);
     addNewDriver(this.state).then((data)=> {
       this.props.history.push('/thankyou/driver');
     })

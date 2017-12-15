@@ -9,7 +9,7 @@ class ThankYou extends React.Component {
           <div>
             If you have any cocerns please get in
             <a href={`${window.location.origin}/contact`}>contact</a>
-            with us
+            with us.
           </div>
       </div>
 
